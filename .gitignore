@@ -1,0 +1,39 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# ML model files (if they're large, consider using Git LFS instead)
+*.keras
+*.h5
+*.pkl
+
+# Logs and databases
+*.log
+*.sqlite 
