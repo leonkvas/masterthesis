@@ -15,12 +15,12 @@ dark_blue:
   - Length 7: 324 (52.34%)
 
 checkered:
-  - Length 6: 572 (48.56%)
-  - Length 7: 606 (51.44%)
+  - Length 6: 571 (48.47%)
+  - Length 7: 607 (51.53%)
 
 light_blue:
-  - Length 6: 306 (49.76%)
-  - Length 7: 309 (50.24%)
+  - Length 6: 307 (49.92%)
+  - Length 7: 308 (50.08%)
 
 Characteristics by type:
 
