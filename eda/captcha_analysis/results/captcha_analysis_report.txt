@@ -1,0 +1,40 @@
+Captcha Type Analysis Report
+==========================
+
+Total number of captchas: 2412
+
+Distribution by type:
+- dark_blue: 619 (25.66%)
+- checkered: 1178 (48.84%)
+- light_blue: 615 (25.50%)
+
+Length distribution by type:
+
+dark_blue:
+  - Length 6: 295 (47.66%)
+  - Length 7: 324 (52.34%)
+
+checkered:
+  - Length 6: 572 (48.56%)
+  - Length 7: 606 (51.44%)
+
+light_blue:
+  - Length 6: 306 (49.76%)
+  - Length 7: 309 (50.24%)
+
+Characteristics by type:
+
+dark_blue:
+  - Average edge density: 38.1714
+  - Average saturation: 196.33
+  - Average value: 122.85
+
+checkered:
+  - Average edge density: 26.6684
+  - Average saturation: 12.35
+  - Average value: 175.16
+
+light_blue:
+  - Average edge density: 57.6604
+  - Average saturation: 57.99
+  - Average value: 211.41

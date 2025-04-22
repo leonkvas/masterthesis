@@ -1,0 +1,19 @@
+attack_method,attack_parameter,total_examples,successful_attacks,success_rate
+fgsm,epsilon=0.1,17,1,5.88%
+fgsm,epsilon=0.5,17,1,5.88%
+fgsm,epsilon=1.0,17,9,52.94%
+fgsm,epsilon=2.0,17,12,70.59%
+gaussian,sigma=0.1,17,5,29.41%
+gaussian,sigma=0.2,17,17,100.00%
+gaussian,sigma=0.3,17,17,100.00%
+gaussian,sigma=0.4,17,17,100.00%
+bim,epsilon=0.01,17,1,5.88%
+bim,epsilon=0.05,17,1,5.88%
+bim,epsilon=0.1,17,9,52.94%
+ifgs,confidence=0.7,17,17,100.00%
+ifgs,confidence=0.8,17,17,100.00%
+ifgs,confidence=0.9,17,17,100.00%
+smooth_fgsm,"sigma=0.5, epsilon=0.5",17,2,11.76%
+smooth_fgsm,"sigma=1.0, epsilon=1.0",17,3,17.65%
+smooth_fgsm,"sigma=1.5, epsilon=1.0",17,1,5.88%
+smooth_fgsm,"sigma=1.0, epsilon=1.5",17,5,29.41%

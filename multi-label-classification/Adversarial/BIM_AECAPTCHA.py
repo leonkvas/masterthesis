@@ -222,7 +222,7 @@ def character_accuracy(true_label, predicted_label):
     return correct / len(true_label) if len(true_label) > 0 else 0
 
 
-def test_model_robustness(model, test_dir, num_samples=5):
+def test_model_robustness(model, test_dir, num_samples=50):
     """Test model robustness against AECAPTCHA using BIM attack."""
     test_files = [f for f in os.listdir(test_dir) if f.endswith(('.png', '.jpg'))]
     test_files = test_files[:num_samples]  # Limit number of samples
@@ -239,6 +239,9 @@ def test_model_robustness(model, test_dir, num_samples=5):
         'avg_adversarial_accuracy': 0
     }
     
+    skipped_samples = 0
+    processed_samples = 0
+    
     for file in test_files:
         image_path = os.path.join(test_dir, file)
         original_image = load_and_preprocess_image(image_path)
@@ -247,10 +250,18 @@ def test_model_robustness(model, test_dir, num_samples=5):
         label_sequence_batch = tf.expand_dims(label_sequence, 0)
         
         # Get original prediction
-        original_img_batch = tf.expand_dims(original_image, axis=0)
+        original_img_batch = tf.expand_dims(original_image, 0)
         original_preds = model.predict(original_img_batch, verbose=0)
         original_pred_indices = np.argmax(original_preds, axis=-1)[0]
         original_pred = ''.join([idx_to_char.get(idx, '') for idx in original_pred_indices if idx != 0])
+        
+        # Check if original prediction is correct, skip if not
+        if original_pred != original_label:
+            print(f"Skipping {file}: original prediction '{original_pred}' doesn't match label '{original_label}'")
+            skipped_samples += 1
+            continue
+        
+        processed_samples += 1
         
         # Calculate original loss
         original_loss = tf.keras.losses.sparse_categorical_crossentropy(
@@ -276,7 +287,7 @@ def test_model_robustness(model, test_dir, num_samples=5):
         )
         
         # Get prediction on adversarial image
-        adv_img_batch = tf.expand_dims(adv_image, axis=0)
+        adv_img_batch = tf.expand_dims(adv_image, 0)
         adv_preds = model.predict(adv_img_batch, verbose=0)
         adv_pred_indices = np.argmax(adv_preds, axis=-1)[0]
         adversarial_pred = ''.join([idx_to_char.get(idx, '') for idx in adv_pred_indices if idx != 0])
@@ -312,7 +323,7 @@ def test_model_robustness(model, test_dir, num_samples=5):
             overall_results['successful_attacks'] += 1
             
             # Save visualization for successful attacks
-            save_path = f'multi-label-classification/Adversarial/bim_results/aecaptcha_{file}'
+            save_path = f'multi-label-classification/Adversarial/bim_results/example_images/aecaptcha_{file}'
             visualize_attack(
                 original_image, adv_image, original_label,
                 original_pred, adversarial_pred, loss_change, save_path
@@ -337,6 +348,12 @@ def test_model_robustness(model, test_dir, num_samples=5):
         overall_results['avg_original_accuracy'] /= overall_results['total_samples']
         overall_results['avg_adversarial_accuracy'] /= overall_results['total_samples']
     
+    # Print summary of processed vs skipped samples
+    print(f"\nSummary of processed samples:")
+    print(f"  Total images checked: {len(test_files)}")
+    print(f"  Images with correct original predictions: {processed_samples}")
+    print(f"  Images skipped (incorrect original predictions): {skipped_samples}")
+    
     return overall_results
 
 
@@ -350,6 +367,8 @@ def full_sequence_accuracy(y_true, y_pred):
 def main():
     # Create results directory
     os.makedirs('multi-label-classification/Adversarial/bim_results', exist_ok=True)
+    # Create examples subdirectory
+    os.makedirs('multi-label-classification/Adversarial/bim_results/example_images', exist_ok=True)
     
     # Load the trained model
     model = tf.keras.models.load_model("best_double_conv_layers_model.keras")

@@ -182,7 +182,7 @@ def visualize_attack(original_image, adversarial_image, original_label,
     plt.close()
 
 
-def test_model_robustness(model, test_dir, num_samples=5):
+def test_model_robustness(model, test_dir, num_samples=50):
     """Test model robustness against FGSM attacks."""
     test_files = [f for f in os.listdir(test_dir) if f.endswith(('.png', '.jpg'))]
     test_files = test_files[:num_samples]  # Limit number of samples
@@ -191,6 +191,9 @@ def test_model_robustness(model, test_dir, num_samples=5):
                           'original_loss': 0, 'adversarial_loss': 0,
                           'original_accuracy': 0, 'adversarial_accuracy': 0} 
               for epsilon in EPSILONS}
+    
+    skipped_samples = 0
+    processed_samples = 0
     
     for file in test_files:
         image_path = os.path.join(test_dir, file)
@@ -204,6 +207,14 @@ def test_model_robustness(model, test_dir, num_samples=5):
         original_preds = model.predict(original_img_batch, verbose=0)
         original_pred_indices = np.argmax(original_preds, axis=-1)[0]
         predicted_original = ''.join([idx_to_char.get(idx, '') for idx in original_pred_indices if idx != 0])
+        
+        # Check if original prediction is correct, skip if not
+        if predicted_original != original_label:
+            print(f"Skipping {file}: original prediction '{predicted_original}' doesn't match label '{original_label}'")
+            skipped_samples += 1
+            continue
+        
+        processed_samples += 1
         
         # Calculate original loss and accuracy
         original_loss = tf.keras.losses.sparse_categorical_crossentropy(
@@ -254,7 +265,7 @@ def test_model_robustness(model, test_dir, num_samples=5):
                 results[epsilon]['successful_attacks'] += 1
                 
                 # Save visualization for successful attacks
-                save_path = f'multi-label-classification/Adversarial/fgsm_results/epsilon_{epsilon}_{file}'
+                save_path = f'multi-label-classification/Adversarial/fgsm_results/examples/epsilon_{epsilon}_{file}'
                 visualize_attack(
                     original_image, adversarial_image, original_label,
                     predicted_original, predicted_adv, epsilon, save_path
@@ -275,6 +286,12 @@ def test_model_robustness(model, test_dir, num_samples=5):
             results[epsilon]['original_accuracy'] /= results[epsilon]['total']
             results[epsilon]['adversarial_accuracy'] /= results[epsilon]['total']
     
+    # Print summary of processed vs skipped samples
+    print(f"\nSummary of processed samples:")
+    print(f"  Total images checked: {len(test_files)}")
+    print(f"  Images with correct original predictions: {processed_samples}")
+    print(f"  Images skipped (incorrect original predictions): {skipped_samples}")
+    
     return results
 
 @tf.keras.utils.register_keras_serializable()
@@ -286,9 +303,10 @@ def full_sequence_accuracy(y_true, y_pred):
 def main():
     # Create results directory
     os.makedirs('multi-label-classification/Adversarial/fgsm_results', exist_ok=True)
+    # Create examples subdirectory for images
+    os.makedirs('multi-label-classification/Adversarial/fgsm_results/examples', exist_ok=True)
     
     # Load the trained model
-    #model = tf.keras.models.load_model("saved_models_32_30epochs/best_with_batch_normalization.keras")
     model = tf.keras.models.load_model("best_double_conv_layers_model.keras")
     
     # Set the model to evaluation mode
@@ -391,6 +409,7 @@ def main():
     
     print("\nResults saved to 'multi-label-classification/Adversarial/fgsm_results/metrics.csv'")
     print("Comparison plots saved to 'multi-label-classification/Adversarial/fgsm_results/metrics_comparison.png'")
+    print("Example images saved to 'multi-label-classification/Adversarial/fgsm_results/examples/'")
 
 
 # --- Main Script: Load model and test on a sample image ---

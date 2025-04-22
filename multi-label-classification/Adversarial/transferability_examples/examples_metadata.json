@@ -1,0 +1,3725 @@
+[
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_fgsm_eps0.1.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "0218ZD",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\0218ZD_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_fgsm_eps0.5.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "0218ZD",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\0218ZD_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_fgsm_eps1.0.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "9218ZD",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_1.0\\0218ZD_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_fgsm_eps2.0.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "1218ZD",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_2.0\\0218ZD_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_fgsm_eps0.1.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "05K4D45",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\05K4D45_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_fgsm_eps0.5.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "05K4D45",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\05K4D45_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_fgsm_eps1.0.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "05K4D45",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_1.0\\05K4D45_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_fgsm_eps2.0.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "05K4D45",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_2.0\\05K4D45_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_fgsm_eps0.1.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "06G15M9",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\06G15M9_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_fgsm_eps0.5.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "06G15M9",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\06G15M9_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_fgsm_eps1.0.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "06G15M9",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_1.0\\06G15M9_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_fgsm_eps2.0.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "06G15M9",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_2.0\\06G15M9_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_fgsm_eps0.1.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "06R5V22",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\06R5V22_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_fgsm_eps0.5.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "06R5V22",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\06R5V22_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_fgsm_eps1.0.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "06R5V22",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_1.0\\06R5V22_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_fgsm_eps2.0.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "06V5V2I",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_2.0\\06R5V22_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_fgsm_eps0.1.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "07M69U",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\07M69U_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_fgsm_eps0.5.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "07M69U",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\07M69U_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_fgsm_eps1.0.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "17M69U",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_1.0\\07M69U_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_fgsm_eps2.0.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "Y7N69O",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_2.0\\07M69U_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_fgsm_eps0.1.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "08G15X",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\08G15X_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_fgsm_eps0.5.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "08G15X",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\08G15X_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_fgsm_eps1.0.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "08G15X",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_1.0\\08G15X_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_fgsm_eps2.0.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "08G15X",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_2.0\\08G15X_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_fgsm_eps0.1.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "08G3PT0",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_0.1\\08G3PB0_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_fgsm_eps0.5.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "08G3PT0",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_0.5\\08G3PB0_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_fgsm_eps1.0.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "08G3PT0",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_1.0\\08G3PB0_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_fgsm_eps2.0.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "18G3PT0",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_2.0\\08G3PB0_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_fgsm_eps0.1.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "0910NF7",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\0910NF7_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_fgsm_eps0.5.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "0910NF7",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\0910NF7_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_fgsm_eps1.0.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "0910WF7",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_1.0\\0910NF7_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_fgsm_eps2.0.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "0910WF7",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_2.0\\0910NF7_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_fgsm_eps0.1.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "0H66UH0",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\0H66UH0_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_fgsm_eps0.5.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "0H66UH0",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\0H66UH0_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_fgsm_eps1.0.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "0H65UH0",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_1.0\\0H66UH0_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_fgsm_eps2.0.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "0H65UH0",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_2.0\\0H66UH0_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_fgsm_eps0.1.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "0HF1U5",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\0HF1U5_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_fgsm_eps0.5.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "0HF1U5",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\0HF1U5_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_fgsm_eps1.0.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "0HF1U5",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_1.0\\0HF1U5_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_fgsm_eps2.0.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "1HF1U5",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_2.0\\0HF1U5_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_fgsm_eps0.1.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "0JG8Q90",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\0JG8Q90_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_fgsm_eps0.5.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "0JG8Q90",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\0JG8Q90_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_fgsm_eps1.0.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "1JG8Q90",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_1.0\\0JG8Q90_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_fgsm_eps2.0.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "1JG8Q90",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_2.0\\0JG8Q90_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_fgsm_eps0.1.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "0JG8Y45",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\0JG8Y45_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_fgsm_eps0.5.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "0JG8Y45",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\0JG8Y45_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_fgsm_eps1.0.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "0JG8Y45",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_1.0\\0JG8Y45_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_fgsm_eps2.0.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "0JG8Y45",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_2.0\\0JG8Y45_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_fgsm_eps0.1.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "0UU2DH0",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\0UU2DH0_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_fgsm_eps0.5.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "0UU2DH0",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\0UU2DH0_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_fgsm_eps1.0.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "0UU2DH0",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_1.0\\0UU2DH0_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_fgsm_eps2.0.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "0UJ2DH0",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_2.0\\0UU2DH0_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_fgsm_eps0.1.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "0V01R8",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\0V01R8_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_fgsm_eps0.5.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "0V01R8",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\0V01R8_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_fgsm_eps1.0.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "0V01R1",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_1.0\\0V01R8_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_fgsm_eps2.0.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "0V01R1",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_2.0\\0V01R8_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_fgsm_eps0.1.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "16M5885",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\16M5885_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_fgsm_eps0.5.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "16M5885",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\16M5885_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_fgsm_eps1.0.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "16M58H5",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_1.0\\16M5885_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_fgsm_eps2.0.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "16W58W5",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_2.0\\16M5885_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_fgsm_eps0.1.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "1778TQ",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\1778TQ_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_fgsm_eps0.5.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "1778TQ",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\1778TQ_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_fgsm_eps1.0.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "17M8TQ",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_1.0\\1778TQ_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_fgsm_eps2.0.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "17M81W",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": true,
+    "relative_path": "fgsm\\epsilon_2.0\\1778TQ_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_fgsm_eps0.1.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "1865V17",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.1\\1865V17_fgsm_eps0.1.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_fgsm_eps0.5.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "1865V17",
+    "attack_method": "fgsm",
+    "attack_parameter": 0.5,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_0.5\\1865V17_fgsm_eps0.5.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_fgsm_eps1.0.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "1865V17",
+    "attack_method": "fgsm",
+    "attack_parameter": 1.0,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_1.0\\1865V17_fgsm_eps1.0.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_fgsm_eps2.0.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "1865V17",
+    "attack_method": "fgsm",
+    "attack_parameter": 2.0,
+    "attack_success": false,
+    "relative_path": "fgsm\\epsilon_2.0\\1865V17_fgsm_eps2.0.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_gaussian_sigma0.1.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "0218ZJ",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.1\\0218ZD_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_gaussian_sigma0.2.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "3IX31W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\0218ZD_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_gaussian_sigma0.3.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "37V75W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\0218ZD_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_gaussian_sigma0.4.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "L75T5W2",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\0218ZD_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_gaussian_sigma0.1.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "05K4V45",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.1\\05K4D45_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_gaussian_sigma0.2.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "8IX71W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\05K4D45_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_gaussian_sigma0.3.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "37X45W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\05K4D45_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_gaussian_sigma0.4.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "L7W45W2",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\05K4D45_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_gaussian_sigma0.1.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "06G15M9",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "gaussian\\sigma_0.1\\06G15M9_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_gaussian_sigma0.2.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "8MX71W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\06G15M9_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_gaussian_sigma0.3.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "17X75W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\06G15M9_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_gaussian_sigma0.4.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "MPOT5WQ",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\06G15M9_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_gaussian_sigma0.1.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "06R5V22",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "gaussian\\sigma_0.1\\06R5V22_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_gaussian_sigma0.2.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "77X71W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\06R5V22_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_gaussian_sigma0.3.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "3IX75W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\06R5V22_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_gaussian_sigma0.4.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "L75M5W2",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\06R5V22_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_gaussian_sigma0.1.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "07M69U",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "gaussian\\sigma_0.1\\07M69U_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_gaussian_sigma0.2.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "07W11W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\07M69U_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_gaussian_sigma0.3.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "17W75W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\07M69U_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_gaussian_sigma0.4.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "L75T5WS",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\07M69U_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_gaussian_sigma0.1.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "08G15X",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "gaussian\\sigma_0.1\\08G15X_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_gaussian_sigma0.2.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "77X11W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\08G15X_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_gaussian_sigma0.3.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "2IX75W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\08G15X_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_gaussian_sigma0.4.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "Q7WS5W2",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\08G15X_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_gaussian_sigma0.1.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "08G3PT0",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.1\\08G3PB0_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_gaussian_sigma0.2.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "7MM71W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\08G3PB0_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_gaussian_sigma0.3.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "37X75W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\08G3PB0_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_gaussian_sigma0.4.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "MPW45W2",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\08G3PB0_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_gaussian_sigma0.1.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "0910NJ7",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.1\\0910NF7_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_gaussian_sigma0.2.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "7MM7VW",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\0910NF7_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_gaussian_sigma0.3.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "97W451",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\0910NF7_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_gaussian_sigma0.4.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "Q75T5WQ",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\0910NF7_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_gaussian_sigma0.1.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "0H66UH0",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "gaussian\\sigma_0.1\\0H66UH0_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_gaussian_sigma0.2.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "77M714",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\0H66UH0_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_gaussian_sigma0.3.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "L7575W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\0H66UH0_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_gaussian_sigma0.4.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "MP5T5WQ",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\0H66UH0_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_gaussian_sigma0.1.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "0HF1U5",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "gaussian\\sigma_0.1\\0HF1U5_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_gaussian_sigma0.2.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "77X717",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\0HF1U5_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_gaussian_sigma0.3.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "37V75W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\0HF1U5_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_gaussian_sigma0.4.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "MPMT5W2",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\0HF1U5_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_gaussian_sigma0.1.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "0JG8Q90",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "gaussian\\sigma_0.1\\0JG8Q90_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_gaussian_sigma0.2.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "1MM71W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\0JG8Q90_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_gaussian_sigma0.3.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "L7X75W1",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\0JG8Q90_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_gaussian_sigma0.4.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "QPOT5WJ",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\0JG8Q90_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_gaussian_sigma0.1.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "0JG8Y45",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "gaussian\\sigma_0.1\\0JG8Y45_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_gaussian_sigma0.2.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "1MM714",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\0JG8Y45_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_gaussian_sigma0.3.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "17W71W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\0JG8Y45_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_gaussian_sigma0.4.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "QPOT5WJ",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\0JG8Y45_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_gaussian_sigma0.1.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "0UU2DH0",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "gaussian\\sigma_0.1\\0UU2DH0_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_gaussian_sigma0.2.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "7MX71W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\0UU2DH0_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_gaussian_sigma0.3.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "L7X55W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\0UU2DH0_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_gaussian_sigma0.4.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "97W45W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\0UU2DH0_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_gaussian_sigma0.1.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "0V01R1",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.1\\0V01R8_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_gaussian_sigma0.2.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "77X71W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\0V01R8_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_gaussian_sigma0.3.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "37W75W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\0V01R8_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_gaussian_sigma0.4.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "L75T5W2",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\0V01R8_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_gaussian_sigma0.1.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "16M5885",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "gaussian\\sigma_0.1\\16M5885_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_gaussian_sigma0.2.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "14M71W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\16M5885_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_gaussian_sigma0.3.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "17W45W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\16M5885_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_gaussian_sigma0.4.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "QPO45W2",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\16M5885_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_gaussian_sigma0.1.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "1778TQ",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "gaussian\\sigma_0.1\\1778TQ_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_gaussian_sigma0.2.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "3IX7MW",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\1778TQ_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_gaussian_sigma0.3.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "L7VT5W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\1778TQ_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_gaussian_sigma0.4.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "L5T5O",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\1778TQ_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_gaussian_sigma0.1.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "1865V17",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.1,
+    "attack_success": false,
+    "relative_path": "gaussian\\sigma_0.1\\1865V17_gaussian_sigma0.1.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_gaussian_sigma0.2.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "17X5VW",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.2,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.2\\1865V17_gaussian_sigma0.2.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_gaussian_sigma0.3.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "14X75W",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.3,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.3\\1865V17_gaussian_sigma0.3.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_gaussian_sigma0.4.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "1PW45W2",
+    "attack_method": "gaussian",
+    "attack_parameter": 0.4,
+    "attack_success": true,
+    "relative_path": "gaussian\\sigma_0.4\\1865V17_gaussian_sigma0.4.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_bim_eps0.010.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "0218ZD",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\0218ZD_bim_eps0.010.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_bim_eps0.050.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "0218ZD",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\0218ZD_bim_eps0.050.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_bim_eps0.100.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "9218ZD",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": true,
+    "relative_path": "bim\\epsilon_0.1\\0218ZD_bim_eps0.100.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_bim_eps0.010.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "05K4D45",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\05K4D45_bim_eps0.010.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_bim_eps0.050.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "05K4D45",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\05K4D45_bim_eps0.050.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_bim_eps0.100.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "05K4D45",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.1\\05K4D45_bim_eps0.100.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_bim_eps0.010.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "06G15M9",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\06G15M9_bim_eps0.010.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_bim_eps0.050.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "06G15M9",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\06G15M9_bim_eps0.050.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_bim_eps0.100.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "06G15M9",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.1\\06G15M9_bim_eps0.100.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_bim_eps0.010.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "06R5V22",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\06R5V22_bim_eps0.010.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_bim_eps0.050.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "06R5V22",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\06R5V22_bim_eps0.050.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_bim_eps0.100.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "06R5V2I",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": true,
+    "relative_path": "bim\\epsilon_0.1\\06R5V22_bim_eps0.100.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_bim_eps0.010.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "07M69U",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\07M69U_bim_eps0.010.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_bim_eps0.050.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "07M69U",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\07M69U_bim_eps0.050.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_bim_eps0.100.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "17M69U",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": true,
+    "relative_path": "bim\\epsilon_0.1\\07M69U_bim_eps0.100.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_bim_eps0.010.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "08G15X",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\08G15X_bim_eps0.010.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_bim_eps0.050.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "08G15X",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\08G15X_bim_eps0.050.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_bim_eps0.100.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "08G15X",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.1\\08G15X_bim_eps0.100.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_bim_eps0.010.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "08G3PT0",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": true,
+    "relative_path": "bim\\epsilon_0.01\\08G3PB0_bim_eps0.010.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_bim_eps0.050.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "08G3PT0",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": true,
+    "relative_path": "bim\\epsilon_0.05\\08G3PB0_bim_eps0.050.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_bim_eps0.100.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "08G3PT0",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": true,
+    "relative_path": "bim\\epsilon_0.1\\08G3PB0_bim_eps0.100.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_bim_eps0.010.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "0910NF7",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\0910NF7_bim_eps0.010.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_bim_eps0.050.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "0910NF7",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\0910NF7_bim_eps0.050.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_bim_eps0.100.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "0910WF7",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": true,
+    "relative_path": "bim\\epsilon_0.1\\0910NF7_bim_eps0.100.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_bim_eps0.010.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "0H66UH0",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\0H66UH0_bim_eps0.010.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_bim_eps0.050.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "0H66UH0",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\0H66UH0_bim_eps0.050.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_bim_eps0.100.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "0H65UH0",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": true,
+    "relative_path": "bim\\epsilon_0.1\\0H66UH0_bim_eps0.100.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_bim_eps0.010.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "0HF1U5",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\0HF1U5_bim_eps0.010.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_bim_eps0.050.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "0HF1U5",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\0HF1U5_bim_eps0.050.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_bim_eps0.100.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "0HF1U5",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.1\\0HF1U5_bim_eps0.100.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_bim_eps0.010.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "0JG8Q90",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\0JG8Q90_bim_eps0.010.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_bim_eps0.050.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "0JG8Q90",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\0JG8Q90_bim_eps0.050.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_bim_eps0.100.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "1JG8Q90",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": true,
+    "relative_path": "bim\\epsilon_0.1\\0JG8Q90_bim_eps0.100.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_bim_eps0.010.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "0JG8Y45",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\0JG8Y45_bim_eps0.010.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_bim_eps0.050.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "0JG8Y45",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\0JG8Y45_bim_eps0.050.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_bim_eps0.100.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "0JG8Y45",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.1\\0JG8Y45_bim_eps0.100.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_bim_eps0.010.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "0UU2DH0",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\0UU2DH0_bim_eps0.010.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_bim_eps0.050.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "0UU2DH0",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\0UU2DH0_bim_eps0.050.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_bim_eps0.100.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "0UU2DH0",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.1\\0UU2DH0_bim_eps0.100.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_bim_eps0.010.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "0V01R8",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\0V01R8_bim_eps0.010.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_bim_eps0.050.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "0V01R8",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\0V01R8_bim_eps0.050.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_bim_eps0.100.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "0V01R8",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.1\\0V01R8_bim_eps0.100.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_bim_eps0.010.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "16M5885",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\16M5885_bim_eps0.010.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_bim_eps0.050.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "16M5885",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\16M5885_bim_eps0.050.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_bim_eps0.100.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "16M58W5",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": true,
+    "relative_path": "bim\\epsilon_0.1\\16M5885_bim_eps0.100.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_bim_eps0.010.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "1778TQ",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\1778TQ_bim_eps0.010.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_bim_eps0.050.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "1778TQ",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\1778TQ_bim_eps0.050.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_bim_eps0.100.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "17M8TQ",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": true,
+    "relative_path": "bim\\epsilon_0.1\\1778TQ_bim_eps0.100.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_bim_eps0.010.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "1865V17",
+    "attack_method": "bim",
+    "attack_parameter": 0.01,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.01\\1865V17_bim_eps0.010.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_bim_eps0.050.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "1865V17",
+    "attack_method": "bim",
+    "attack_parameter": 0.05,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.05\\1865V17_bim_eps0.050.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_bim_eps0.100.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "1865V17",
+    "attack_method": "bim",
+    "attack_parameter": 0.1,
+    "attack_iterations": 10,
+    "attack_success": false,
+    "relative_path": "bim\\epsilon_0.1\\1865V17_bim_eps0.100.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_ifgs_conf0.7.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "00218Z5",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 9,
+    "max_confidence": 0.7082037329673767,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\0218ZD_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_ifgs_conf0.8.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "00218Z",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 16,
+    "max_confidence": 0.8203532695770264,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\0218ZD_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_ifgs_conf0.9.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "90218ZD",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 19,
+    "max_confidence": 0.9325327277183533,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\0218ZD_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_ifgs_conf0.7.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "50544D4",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 17,
+    "max_confidence": 0.7391698956489563,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\05K4D45_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_ifgs_conf0.8.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "50544D4",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 23,
+    "max_confidence": 0.8044222593307495,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\05K4D45_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_ifgs_conf0.9.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "50544D4",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 50,
+    "max_confidence": 0.8472312688827515,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\05K4D45_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_ifgs_conf0.7.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "906G159",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 49,
+    "max_confidence": 0.7279833555221558,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\06G15M9_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_ifgs_conf0.8.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "906G159",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 50,
+    "max_confidence": 0.7107959389686584,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\06G15M9_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_ifgs_conf0.9.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "906G15",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 50,
+    "max_confidence": 0.7390681505203247,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\06G15M9_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_ifgs_conf0.7.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "20645V2",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 17,
+    "max_confidence": 0.7628336548805237,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\06R5V22_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_ifgs_conf0.8.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "20655V2",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 22,
+    "max_confidence": 0.8055921792984009,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\06R5V22_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_ifgs_conf0.9.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "206R5V2",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 50,
+    "max_confidence": 0.8747661709785461,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\06R5V22_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_ifgs_conf0.7.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "007769",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 50,
+    "max_confidence": 0.6483325362205505,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\07M69U_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_ifgs_conf0.8.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "0077692",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 50,
+    "max_confidence": 0.6505207419395447,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\07M69U_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_ifgs_conf0.9.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "007869",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 50,
+    "max_confidence": 0.6537498235702515,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\07M69U_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_ifgs_conf0.7.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "708G158",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 23,
+    "max_confidence": 0.7142388820648193,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\08G15X_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_ifgs_conf0.8.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "308G15",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 50,
+    "max_confidence": 0.7870164513587952,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\08G15X_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_ifgs_conf0.9.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "708G158",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 50,
+    "max_confidence": 0.7828797698020935,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\08G15X_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_ifgs_conf0.7.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "008G3P5",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 22,
+    "max_confidence": 0.7407231330871582,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\08G3PB0_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_ifgs_conf0.8.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "008G3P",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 35,
+    "max_confidence": 0.8006185293197632,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\08G3PB0_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_ifgs_conf0.9.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "008G3P5",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 50,
+    "max_confidence": 0.8122569918632507,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\08G3PB0_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_ifgs_conf0.7.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "70910N",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 16,
+    "max_confidence": 0.7012341618537903,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\0910NF7_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_ifgs_conf0.8.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "70910N",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 25,
+    "max_confidence": 0.808158278465271,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\0910NF7_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_ifgs_conf0.9.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "70910N",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 50,
+    "max_confidence": 0.8257266283035278,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\0910NF7_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_ifgs_conf0.7.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "00H66U8",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 11,
+    "max_confidence": 0.7049651145935059,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\0H66UH0_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_ifgs_conf0.8.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "00H66U",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 15,
+    "max_confidence": 0.8055580258369446,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\0H66UH0_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_ifgs_conf0.9.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "00H66U8",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 50,
+    "max_confidence": 0.8301507830619812,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\0H66UH0_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_ifgs_conf0.7.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "00H41U5",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 7,
+    "max_confidence": 0.7293517589569092,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\0HF1U5_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_ifgs_conf0.8.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "00H91U5",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 10,
+    "max_confidence": 0.8047649264335632,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\0HF1U5_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_ifgs_conf0.9.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "90HF1U5",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 50,
+    "max_confidence": 0.8296471238136292,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\0HF1U5_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_ifgs_conf0.7.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "00J98Q9",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 11,
+    "max_confidence": 0.7135671377182007,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\0JG8Q90_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_ifgs_conf0.8.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "00J98Q9",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 14,
+    "max_confidence": 0.8153017163276672,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\0JG8Q90_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_ifgs_conf0.9.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "00JG8Q9",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 21,
+    "max_confidence": 0.9002373814582825,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\0JG8Q90_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_ifgs_conf0.7.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "50J98Y4",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 14,
+    "max_confidence": 0.7569934725761414,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\0JG8Y45_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_ifgs_conf0.8.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "50J78Y4",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 16,
+    "max_confidence": 0.8033398389816284,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\0JG8Y45_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_ifgs_conf0.9.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "50JG8Y4",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 23,
+    "max_confidence": 0.927153468132019,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\0JG8Y45_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_ifgs_conf0.7.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "00U22D",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 14,
+    "max_confidence": 0.7003685235977173,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\0UU2DH0_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_ifgs_conf0.8.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "00U22D2",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 50,
+    "max_confidence": 0.7065213918685913,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\0UU2DH0_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_ifgs_conf0.9.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "00U42D",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 50,
+    "max_confidence": 0.7049965858459473,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\0UU2DH0_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_ifgs_conf0.7.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "00V01R8",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 10,
+    "max_confidence": 0.8046740889549255,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\0V01R8_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_ifgs_conf0.8.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "00V01R8",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 11,
+    "max_confidence": 0.9146583080291748,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\0V01R8_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_ifgs_conf0.9.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "00V01R8",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 13,
+    "max_confidence": 0.9748404622077942,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\0V01R8_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_ifgs_conf0.7.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "5161588",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 15,
+    "max_confidence": 0.7122799158096313,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\16M5885_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_ifgs_conf0.8.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "5169588",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 27,
+    "max_confidence": 0.8054389953613281,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\16M5885_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_ifgs_conf0.9.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "5168588",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 50,
+    "max_confidence": 0.8345111012458801,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\16M5885_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_ifgs_conf0.7.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "11778T",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 7,
+    "max_confidence": 0.7053540349006653,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\1778TQ_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_ifgs_conf0.8.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "11778T",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 12,
+    "max_confidence": 0.81343013048172,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\1778TQ_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_ifgs_conf0.9.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "11778T3",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 50,
+    "max_confidence": 0.839455783367157,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\1778TQ_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_ifgs_conf0.7.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "7185VV1",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.7,
+    "iterations_used": 10,
+    "max_confidence": 0.7352371215820312,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.7\\1865V17_ifgs_conf0.7.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_ifgs_conf0.8.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "71865V1",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.8,
+    "iterations_used": 14,
+    "max_confidence": 0.8614367246627808,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.8\\1865V17_ifgs_conf0.8.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_ifgs_conf0.9.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "71865V1",
+    "attack_method": "ifgs",
+    "attack_parameter": 0.9,
+    "iterations_used": 16,
+    "max_confidence": 0.932704508304596,
+    "attack_success": true,
+    "relative_path": "ifgs\\confidence_0.9\\1865V17_ifgs_conf0.9.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_smooth_sigma0.5_eps0.5.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "0218ZD",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\0218ZD_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_smooth_sigma1.0_eps1.0.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "0218ZD",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\0218ZD_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_smooth_sigma1.5_eps1.0.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "02187D",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": true,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\0218ZD_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "0218ZD.jpg",
+    "adversarial_file": "0218ZD_smooth_sigma1.0_eps1.5.png",
+    "original_label": "0218ZD",
+    "predicted_original": "0218ZD",
+    "predicted_adversarial": "1218ZD",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": true,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\0218ZD_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_smooth_sigma0.5_eps0.5.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "05K4D45",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\05K4D45_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_smooth_sigma1.0_eps1.0.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "05K4D45",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\05K4D45_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_smooth_sigma1.5_eps1.0.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "05K4D45",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\05K4D45_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "05K4D45.jpg",
+    "adversarial_file": "05K4D45_smooth_sigma1.0_eps1.5.png",
+    "original_label": "05K4D45",
+    "predicted_original": "05K4D45",
+    "predicted_adversarial": "05K4D45",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\05K4D45_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_smooth_sigma0.5_eps0.5.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "06G15M9",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\06G15M9_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_smooth_sigma1.0_eps1.0.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "06G15M9",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\06G15M9_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_smooth_sigma1.5_eps1.0.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "06G15M9",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\06G15M9_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "06G15M9.jpg",
+    "adversarial_file": "06G15M9_smooth_sigma1.0_eps1.5.png",
+    "original_label": "06G15M9",
+    "predicted_original": "06G15M9",
+    "predicted_adversarial": "06G15M9",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\06G15M9_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_smooth_sigma0.5_eps0.5.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "06R5V22",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\06R5V22_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_smooth_sigma1.0_eps1.0.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "06R5V22",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\06R5V22_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_smooth_sigma1.5_eps1.0.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "06R5V22",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\06R5V22_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "06R5V22.jpg",
+    "adversarial_file": "06R5V22_smooth_sigma1.0_eps1.5.png",
+    "original_label": "06R5V22",
+    "predicted_original": "06R5V22",
+    "predicted_adversarial": "06R5V22",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\06R5V22_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_smooth_sigma0.5_eps0.5.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "07N69U",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": true,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\07M69U_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_smooth_sigma1.0_eps1.0.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "07M69U",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\07M69U_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_smooth_sigma1.5_eps1.0.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "07M69U",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\07M69U_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "07M69U.jpg",
+    "adversarial_file": "07M69U_smooth_sigma1.0_eps1.5.png",
+    "original_label": "07M69U",
+    "predicted_original": "07M69U",
+    "predicted_adversarial": "07M69U",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\07M69U_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_smooth_sigma0.5_eps0.5.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "08G15X",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\08G15X_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_smooth_sigma1.0_eps1.0.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "08G15X",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\08G15X_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_smooth_sigma1.5_eps1.0.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "08G15X",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\08G15X_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "08G15X.jpg",
+    "adversarial_file": "08G15X_smooth_sigma1.0_eps1.5.png",
+    "original_label": "08G15X",
+    "predicted_original": "08G15X",
+    "predicted_adversarial": "08G15X",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\08G15X_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_smooth_sigma0.5_eps0.5.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "08G3PT0",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": true,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\08G3PB0_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_smooth_sigma1.0_eps1.0.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "08G3PT0",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": true,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\08G3PB0_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_smooth_sigma1.5_eps1.0.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "08G3PB0",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\08G3PB0_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "08G3PB0.jpg",
+    "adversarial_file": "08G3PB0_smooth_sigma1.0_eps1.5.png",
+    "original_label": "08G3PB0",
+    "predicted_original": "08G3PB0",
+    "predicted_adversarial": "08G3P10",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": true,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\08G3PB0_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_smooth_sigma0.5_eps0.5.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "0910NF7",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\0910NF7_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_smooth_sigma1.0_eps1.0.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "0910NF7",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\0910NF7_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_smooth_sigma1.5_eps1.0.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "0910NF7",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\0910NF7_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "0910NF7.jpg",
+    "adversarial_file": "0910NF7_smooth_sigma1.0_eps1.5.png",
+    "original_label": "0910NF7",
+    "predicted_original": "0910NF7",
+    "predicted_adversarial": "0910NF7",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\0910NF7_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_smooth_sigma0.5_eps0.5.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "0H66UH0",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\0H66UH0_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_smooth_sigma1.0_eps1.0.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "0H66UH0",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\0H66UH0_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_smooth_sigma1.5_eps1.0.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "0H66UH0",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\0H66UH0_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "0H66UH0.jpg",
+    "adversarial_file": "0H66UH0_smooth_sigma1.0_eps1.5.png",
+    "original_label": "0H66UH0",
+    "predicted_original": "0H66UH0",
+    "predicted_adversarial": "0166V4",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": true,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\0H66UH0_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_smooth_sigma0.5_eps0.5.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "0HF1U5",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\0HF1U5_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_smooth_sigma1.0_eps1.0.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "0HF1U5",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\0HF1U5_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_smooth_sigma1.5_eps1.0.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "0HF1U5",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\0HF1U5_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "0HF1U5.jpg",
+    "adversarial_file": "0HF1U5_smooth_sigma1.0_eps1.5.png",
+    "original_label": "0HF1U5",
+    "predicted_original": "0HF1U5",
+    "predicted_adversarial": "0HF1U5",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\0HF1U5_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_smooth_sigma0.5_eps0.5.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "0JG8Q90",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\0JG8Q90_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_smooth_sigma1.0_eps1.0.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "0JG8Q90",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\0JG8Q90_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_smooth_sigma1.5_eps1.0.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "0JG8Q90",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\0JG8Q90_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "0JG8Q90.jpg",
+    "adversarial_file": "0JG8Q90_smooth_sigma1.0_eps1.5.png",
+    "original_label": "0JG8Q90",
+    "predicted_original": "0JG8Q90",
+    "predicted_adversarial": "0JG8Q90",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\0JG8Q90_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_smooth_sigma0.5_eps0.5.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "0JG8Y45",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\0JG8Y45_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_smooth_sigma1.0_eps1.0.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "0JG8Y45",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\0JG8Y45_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_smooth_sigma1.5_eps1.0.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "0JG8Y45",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\0JG8Y45_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "0JG8Y45.jpg",
+    "adversarial_file": "0JG8Y45_smooth_sigma1.0_eps1.5.png",
+    "original_label": "0JG8Y45",
+    "predicted_original": "0JG8Y45",
+    "predicted_adversarial": "0JG8Y45",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\0JG8Y45_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_smooth_sigma0.5_eps0.5.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "0UU2DH0",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\0UU2DH0_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_smooth_sigma1.0_eps1.0.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "0UU2DH0",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\0UU2DH0_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_smooth_sigma1.5_eps1.0.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "0UU2DH0",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\0UU2DH0_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "0UU2DH0.jpg",
+    "adversarial_file": "0UU2DH0_smooth_sigma1.0_eps1.5.png",
+    "original_label": "0UU2DH0",
+    "predicted_original": "0UU2DH0",
+    "predicted_adversarial": "0UU2DH0",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\0UU2DH0_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_smooth_sigma0.5_eps0.5.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "0V01R8",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\0V01R8_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_smooth_sigma1.0_eps1.0.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "0V01R7",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": true,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\0V01R8_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_smooth_sigma1.5_eps1.0.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "0V01R8",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\0V01R8_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "0V01R8.jpg",
+    "adversarial_file": "0V01R8_smooth_sigma1.0_eps1.5.png",
+    "original_label": "0V01R8",
+    "predicted_original": "0V01R8",
+    "predicted_adversarial": "0V01R7",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": true,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\0V01R8_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_smooth_sigma0.5_eps0.5.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "16M5885",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\16M5885_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_smooth_sigma1.0_eps1.0.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "16M5885",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\16M5885_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_smooth_sigma1.5_eps1.0.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "16M5885",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\16M5885_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "16M5885.jpg",
+    "adversarial_file": "16M5885_smooth_sigma1.0_eps1.5.png",
+    "original_label": "16M5885",
+    "predicted_original": "16M5885",
+    "predicted_adversarial": "16M5885",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\16M5885_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_smooth_sigma0.5_eps0.5.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "1778TQ",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\1778TQ_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_smooth_sigma1.0_eps1.0.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "1778TD",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": true,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\1778TQ_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_smooth_sigma1.5_eps1.0.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "1778TQ",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\1778TQ_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "1778TQ.jpg",
+    "adversarial_file": "1778TQ_smooth_sigma1.0_eps1.5.png",
+    "original_label": "1778TQ",
+    "predicted_original": "1778TQ",
+    "predicted_adversarial": "1778TD",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": true,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\1778TQ_smooth_sigma1.0_eps1.5.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_smooth_sigma0.5_eps0.5.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "1865V17",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 0.5,
+      "epsilon": 0.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_0.5_epsilon_0.5\\1865V17_smooth_sigma0.5_eps0.5.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_smooth_sigma1.0_eps1.0.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "1865V17",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.0\\1865V17_smooth_sigma1.0_eps1.0.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_smooth_sigma1.5_eps1.0.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "1865V17",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.5,
+      "epsilon": 1.0
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.5_epsilon_1.0\\1865V17_smooth_sigma1.5_eps1.0.png"
+  },
+  {
+    "original_file": "1865V17.jpg",
+    "adversarial_file": "1865V17_smooth_sigma1.0_eps1.5.png",
+    "original_label": "1865V17",
+    "predicted_original": "1865V17",
+    "predicted_adversarial": "1865V17",
+    "attack_method": "smooth_fgsm",
+    "attack_parameters": {
+      "sigma": 1.0,
+      "epsilon": 1.5
+    },
+    "attack_success": false,
+    "relative_path": "smooth_fgsm\\sigma_1.0_epsilon_1.5\\1865V17_smooth_sigma1.0_eps1.5.png"
+  }
+]

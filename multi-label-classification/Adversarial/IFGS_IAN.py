@@ -228,53 +228,65 @@ def visualize_attack(original_image, adversarial_image, original_label, target_l
     plt.close()
 
 
-def test_model_robustness(model, test_dir, num_samples=5):
-    """Test model robustness against IFGS/IAN attacks with different confidence levels."""
+def test_model_robustness(model, test_dir, num_samples=50):
+    """Test model robustness against IFGS attacks."""
     test_files = [f for f in os.listdir(test_dir) if f.endswith(('.png', '.jpg'))]
     test_files = test_files[:num_samples]  # Limit number of samples
     
-    results = {conf: {'successful_attacks': 0, 'total': 0, 'avg_iterations': 0,
-                      'original_loss': 0, 'adversarial_loss': 0,
-                      'original_accuracy': 0, 'adversarial_accuracy': 0} 
-               for conf in CONFIDENCE_LEVELS}
+    results = {confidence: {'successful_attacks': 0, 'total': 0, 'avg_iterations': 0,
+                            'original_loss': 0, 'adversarial_loss': 0,
+                            'original_accuracy': 0, 'adversarial_accuracy': 0} 
+              for confidence in CONFIDENCE_LEVELS}
+    
+    skipped_samples = 0
+    processed_samples = 0
     
     for file in test_files:
         image_path = os.path.join(test_dir, file)
         original_image = load_and_preprocess_image(image_path)
         original_label = extract_label_from_filename(file)
-        
-        # Create target label
-        target_label = create_target_label(original_label)
-        print(f"\nProcessing {file}: Original label = {original_label}, Target label = {target_label}")
-        
-        # Convert target label to sequence for metrics
-        target_seq = label_to_sequence(target_label)
-        target_seq_batch = tf.expand_dims(target_seq, 0)
+        label_sequence = label_to_sequence(original_label)
+        label_sequence_batch = tf.expand_dims(label_sequence, 0)
         
         # Get original prediction
-        original_img_batch = tf.expand_dims(original_image, axis=0)
+        original_img_batch = tf.expand_dims(original_image, 0)
         original_preds = model.predict(original_img_batch, verbose=0)
         original_pred_indices = np.argmax(original_preds, axis=-1)[0]
         predicted_original = ''.join([idx_to_char.get(idx, '') for idx in original_pred_indices if idx != 0])
         
-        # Calculate original loss and accuracy relative to target
+        # Check if original prediction is correct, skip if not
+        if predicted_original != original_label:
+            print(f"Skipping {file}: original prediction '{predicted_original}' doesn't match label '{original_label}'")
+            skipped_samples += 1
+            continue
+        
+        processed_samples += 1
+        
+        # Calculate original loss
         original_loss = tf.keras.losses.sparse_categorical_crossentropy(
-            target_seq_batch, original_preds, from_logits=False
+            label_sequence_batch, original_preds, from_logits=False
         )
         original_loss = tf.reduce_mean(original_loss).numpy()
         
+        # Calculate character-level accuracy
+        original_correct = tf.cast(tf.equal(tf.cast(label_sequence_batch, tf.int64), 
+                                        tf.argmax(original_preds, axis=-1)), tf.float32)
+        original_char_accuracy = tf.reduce_mean(original_correct).numpy()
+        
         # Calculate sequence-level accuracy (full sequence correct)
-        original_seq_correct = tf.reduce_all(tf.equal(tf.cast(target_seq_batch, tf.int64),
+        original_seq_correct = tf.reduce_all(tf.equal(tf.cast(label_sequence_batch, tf.int64),
                                                   tf.argmax(original_preds, axis=-1)), axis=1)
         original_seq_accuracy = tf.reduce_mean(tf.cast(original_seq_correct, tf.float32)).numpy()
         
-        for confidence_level in CONFIDENCE_LEVELS:
-            print(f"\nTargeting confidence level: {confidence_level}")
+        true_label = original_label  # For consistency with existing code
+        
+        print(f"\nProcessing {file}: Original label = {original_label}, Prediction = {predicted_original}")
+        
+        for confidence in CONFIDENCE_LEVELS:
+            print(f"Applying IFGS attack with confidence = {confidence}...")
             
-            # Apply attack
-            adv_image, iterations, achieved_confidence = apply_ifgs_attack(
-                original_image, original_label, target_label, model, confidence_level
-            )
+            # Apply IFGS attack
+            adv_image, iterations, achieved_confidence = apply_ifgs_attack(original_image, original_label, create_target_label(original_label), model, confidence)
             
             # Get prediction on adversarial image
             adv_img_batch = tf.expand_dims(adv_image, axis=0)
@@ -282,47 +294,59 @@ def test_model_robustness(model, test_dir, num_samples=5):
             adv_pred_indices = np.argmax(adv_preds, axis=-1)[0]
             predicted_adv = ''.join([idx_to_char.get(idx, '') for idx in adv_pred_indices if idx != 0])
             
-            # Calculate adversarial loss and accuracy relative to target
+            # Calculate adversarial loss
             adv_loss = tf.keras.losses.sparse_categorical_crossentropy(
-                target_seq_batch, adv_preds, from_logits=False
+                label_sequence_batch, adv_preds, from_logits=False
             )
             adv_loss = tf.reduce_mean(adv_loss).numpy()
             
+            # Calculate character-level accuracy
+            adv_correct = tf.cast(tf.equal(tf.cast(label_sequence_batch, tf.int64), 
+                                         tf.argmax(adv_preds, axis=-1)), tf.float32)
+            adv_char_accuracy = tf.reduce_mean(adv_correct).numpy()
+            
             # Calculate sequence-level accuracy (full sequence correct)
-            adv_seq_correct = tf.reduce_all(tf.equal(tf.cast(target_seq_batch, tf.int64),
-                                                 tf.argmax(adv_preds, axis=-1)), axis=1)
+            adv_seq_correct = tf.reduce_all(tf.equal(tf.cast(label_sequence_batch, tf.int64),
+                                                  tf.argmax(adv_preds, axis=-1)), axis=1)
             adv_seq_accuracy = tf.reduce_mean(tf.cast(adv_seq_correct, tf.float32)).numpy()
             
-            # Check if attack was successful (predicted matches target and confidence threshold met)
-            success = (predicted_adv == target_label) and (achieved_confidence >= confidence_level)
+            print(f"  Original prediction: {predicted_original}")
+            print(f"  Adversarial prediction: {predicted_adv} (after {iterations} iterations)")
             
-            if success:
-                results[confidence_level]['successful_attacks'] += 1
-                results[confidence_level]['avg_iterations'] += iterations
+            # Check if attack was successful
+            if predicted_adv != true_label:
+                results[confidence]['successful_attacks'] += 1
+                results[confidence]['avg_iterations'] += iterations
                 
                 # Save visualization for successful attacks
-                save_path = f'ifgs_results/conf_{confidence_level}_{file}'
+                save_path = f'multi-label-classification/Adversarial/ifgs_results/examples/conf_{confidence}_{file}'
                 visualize_attack(
-                    original_image, adv_image, original_label, target_label,
-                    predicted_adv, achieved_confidence, iterations, save_path
+                    original_image, adv_image, original_label,
+                    create_target_label(original_label), predicted_adv, confidence, iterations, save_path
                 )
             
             # Update metrics
-            results[confidence_level]['total'] += 1
-            results[confidence_level]['original_loss'] += original_loss
-            results[confidence_level]['adversarial_loss'] += adv_loss
-            results[confidence_level]['original_accuracy'] += original_seq_accuracy
-            results[confidence_level]['adversarial_accuracy'] += adv_seq_accuracy
+            results[confidence]['total'] += 1
+            results[confidence]['original_loss'] += original_loss
+            results[confidence]['adversarial_loss'] += adv_loss
+            results[confidence]['original_accuracy'] += original_seq_accuracy
+            results[confidence]['adversarial_accuracy'] += adv_seq_accuracy
     
     # Calculate averages
-    for conf in CONFIDENCE_LEVELS:
-        if results[conf]['total'] > 0:
-            results[conf]['original_loss'] /= results[conf]['total']
-            results[conf]['adversarial_loss'] /= results[conf]['total']
-            results[conf]['original_accuracy'] /= results[conf]['total']
-            results[conf]['adversarial_accuracy'] /= results[conf]['total']
-            if results[conf]['successful_attacks'] > 0:
-                results[conf]['avg_iterations'] /= results[conf]['successful_attacks']
+    for confidence in CONFIDENCE_LEVELS:
+        if results[confidence]['total'] > 0:
+            if results[confidence]['successful_attacks'] > 0:
+                results[confidence]['avg_iterations'] /= results[confidence]['successful_attacks']
+            results[confidence]['original_loss'] /= results[confidence]['total']
+            results[confidence]['adversarial_loss'] /= results[confidence]['total']
+            results[confidence]['original_accuracy'] /= results[confidence]['total']
+            results[confidence]['adversarial_accuracy'] /= results[confidence]['total']
+    
+    # Print summary of processed vs skipped samples
+    print(f"\nSummary of processed samples:")
+    print(f"  Total images checked: {len(test_files)}")
+    print(f"  Images with correct original predictions: {processed_samples}")
+    print(f"  Images skipped (incorrect original predictions): {skipped_samples}")
     
     return results
 
@@ -336,7 +360,9 @@ def full_sequence_accuracy(y_true, y_pred):
 
 def main():
     # Create results directory
-    os.makedirs('ifgs_results', exist_ok=True)
+    os.makedirs('multi-label-classification/Adversarial/ifgs_results', exist_ok=True)
+    # Create examples subdirectory
+    os.makedirs('multi-label-classification/Adversarial/ifgs_results/examples', exist_ok=True)
     
     # Load the trained model
     model = tf.keras.models.load_model("best_double_conv_layers_model.keras")
@@ -353,108 +379,108 @@ def main():
     print(f"Detected max CAPTCHA length: {max_captcha_len}")
     
     # Test model robustness
-    print("\nTesting model robustness against IFGS/IAN attacks...")
+    print("\nTesting model robustness against IFGS attacks...")
     results = test_model_robustness(model, test_dir)
     
     # Print results
     print("\nAttack Success Rates:")
-    for conf in CONFIDENCE_LEVELS:
-        success_rate = results[conf]['successful_attacks'] / results[conf]['total']
-        avg_iter = results[conf]['avg_iterations'] if results[conf]['successful_attacks'] > 0 else 0
-        print(f"Confidence {conf}: {success_rate:.2%} ({results[conf]['successful_attacks']}/{results[conf]['total']}) - Avg Iterations: {avg_iter:.1f}")
+    for confidence in CONFIDENCE_LEVELS:
+        success_rate = results[confidence]['successful_attacks'] / results[confidence]['total']
+        avg_iterations = results[confidence]['avg_iterations'] if results[confidence]['successful_attacks'] > 0 else 0
+        print(f"Confidence = {confidence}: {success_rate:.2%} ({results[confidence]['successful_attacks']}/{results[confidence]['total']})")
+        if results[confidence]['successful_attacks'] > 0:
+            print(f"  Average iterations for successful attacks: {avg_iterations:.1f}")
     
     # Print accuracy and loss metrics
-    print("\nAccuracy and Loss Metrics (Relative to Target Labels):")
-    for conf in CONFIDENCE_LEVELS:
-        print(f"\nConfidence Level = {conf}:")
-        print(f"  Original Accuracy: {results[conf]['original_accuracy']:.4f}")
-        print(f"  Adversarial Accuracy: {results[conf]['adversarial_accuracy']:.4f}")
-        print(f"  Accuracy Improvement: {results[conf]['adversarial_accuracy'] - results[conf]['original_accuracy']:.4f}")
-        print(f"  Original Loss: {results[conf]['original_loss']:.4f}")
-        print(f"  Adversarial Loss: {results[conf]['adversarial_loss']:.4f}")
-        print(f"  Loss Decrease: {results[conf]['original_loss'] - results[conf]['adversarial_loss']:.4f}")
+    print("\nAccuracy and Loss Metrics:")
+    for confidence in CONFIDENCE_LEVELS:
+        print(f"\nConfidence = {confidence}:")
+        print(f"  Original Accuracy: {results[confidence]['original_accuracy']:.4f}")
+        print(f"  Adversarial Accuracy: {results[confidence]['adversarial_accuracy']:.4f}")
+        print(f"  Accuracy Reduction: {results[confidence]['original_accuracy'] - results[confidence]['adversarial_accuracy']:.4f}")
+        print(f"  Original Loss: {results[confidence]['original_loss']:.4f}")
+        print(f"  Adversarial Loss: {results[confidence]['adversarial_loss']:.4f}")
+        print(f"  Loss Increase: {results[confidence]['adversarial_loss'] - results[confidence]['original_loss']:.4f}")
     
-    # Plot results
-    plt.figure(figsize=(15, 10))
+    # Plot success rates
+    plt.figure(figsize=(15, 8))
     
-    # Success rate vs confidence level
+    # Plot attack success rates
     plt.subplot(2, 2, 1)
-    conf_levels = list(results.keys())
-    success_rates = [results[conf]['successful_attacks'] / results[conf]['total'] for conf in conf_levels]
+    confidences = list(results.keys())
+    success_rates = [results[conf]['successful_attacks'] / results[conf]['total'] for conf in confidences]
     
-    plt.plot(conf_levels, success_rates, 'o-', linewidth=2, markersize=8)
+    plt.plot(confidences, success_rates, 'o-', linewidth=2, markersize=8)
     plt.xlabel('Target Confidence Level')
     plt.ylabel('Attack Success Rate')
-    plt.title('IFGS/IAN Success Rate')
+    plt.title('IFGS Success Rate')
     plt.grid(True, alpha=0.3)
     plt.ylim(0, 1)
     
-    # Average iterations vs confidence level
+    # Plot average iterations
     plt.subplot(2, 2, 2)
-    avg_iterations = [results[conf]['avg_iterations'] if results[conf]['successful_attacks'] > 0 else 0 
-                      for conf in conf_levels]
+    avg_iterations = [results[conf]['avg_iterations'] if results[conf]['successful_attacks'] > 0 else 0 for conf in confidences]
     
-    plt.plot(conf_levels, avg_iterations, 'o-', linewidth=2, markersize=8, color='red')
+    plt.plot(confidences, avg_iterations, 'o-', linewidth=2, markersize=8)
     plt.xlabel('Target Confidence Level')
     plt.ylabel('Average Iterations')
-    plt.title('IFGS/IAN Average Iterations')
+    plt.title('IFGS Average Iterations')
     plt.grid(True, alpha=0.3)
     
     # Plot accuracy comparison
     plt.subplot(2, 2, 3)
-    original_accuracies = [results[conf]['original_accuracy'] for conf in conf_levels]
-    adv_accuracies = [results[conf]['adversarial_accuracy'] for conf in conf_levels]
+    original_accuracies = [results[conf]['original_accuracy'] for conf in confidences]
+    adv_accuracies = [results[conf]['adversarial_accuracy'] for conf in confidences]
     
-    plt.plot(conf_levels, original_accuracies, 'o-', linewidth=2, markersize=8, label='Original')
-    plt.plot(conf_levels, adv_accuracies, 'o-', linewidth=2, markersize=8, label='Adversarial')
+    plt.plot(confidences, original_accuracies, 'o-', linewidth=2, markersize=8, label='Original')
+    plt.plot(confidences, adv_accuracies, 'o-', linewidth=2, markersize=8, label='Adversarial')
     plt.xlabel('Target Confidence Level')
-    plt.ylabel('Accuracy (to Target)')
-    plt.title('Accuracy Comparison (to Target)')
+    plt.ylabel('Accuracy')
+    plt.title('Accuracy Comparison')
     plt.grid(True, alpha=0.3)
     plt.ylim(0, 1)
     plt.legend()
     
     # Plot loss comparison
     plt.subplot(2, 2, 4)
-    original_losses = [results[conf]['original_loss'] for conf in conf_levels]
-    adv_losses = [results[conf]['adversarial_loss'] for conf in conf_levels]
+    original_losses = [results[conf]['original_loss'] for conf in confidences]
+    adv_losses = [results[conf]['adversarial_loss'] for conf in confidences]
     
-    plt.plot(conf_levels, original_losses, 'o-', linewidth=2, markersize=8, label='Original')
-    plt.plot(conf_levels, adv_losses, 'o-', linewidth=2, markersize=8, label='Adversarial')
+    plt.plot(confidences, original_losses, 'o-', linewidth=2, markersize=8, label='Original')
+    plt.plot(confidences, adv_losses, 'o-', linewidth=2, markersize=8, label='Adversarial')
     plt.xlabel('Target Confidence Level')
-    plt.ylabel('Loss (to Target)')
-    plt.title('Loss Comparison (to Target)')
+    plt.ylabel('Loss')
+    plt.title('Loss Comparison')
     plt.grid(True, alpha=0.3)
     plt.legend()
     
     plt.tight_layout()
-    plt.savefig('ifgs_results/metrics_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig('multi-label-classification/Adversarial/ifgs_results/metrics_comparison.png', dpi=300, bbox_inches='tight')
     plt.close()
     
     # Save results to CSV
     import csv
-    with open('ifgs_results/metrics.csv', 'w', newline='') as csvfile:
-        fieldnames = ['Confidence_Level', 'Success_Rate', 'Avg_Iterations',
-                     'Original_Accuracy', 'Adversarial_Accuracy', 'Accuracy_Improvement',
-                     'Original_Loss', 'Adversarial_Loss', 'Loss_Decrease']
+    with open('multi-label-classification/Adversarial/ifgs_results/metrics.csv', 'w', newline='') as csvfile:
+        fieldnames = ['Confidence', 'Success_Rate', 'Avg_Iterations', 'Original_Accuracy', 'Adversarial_Accuracy', 
+                    'Accuracy_Reduction', 'Original_Loss', 'Adversarial_Loss', 'Loss_Increase']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         
         writer.writeheader()
-        for conf in CONFIDENCE_LEVELS:
+        for confidence in CONFIDENCE_LEVELS:
             writer.writerow({
-                'Confidence_Level': conf,
-                'Success_Rate': results[conf]['successful_attacks'] / results[conf]['total'],
-                'Avg_Iterations': results[conf]['avg_iterations'],
-                'Original_Accuracy': results[conf]['original_accuracy'],
-                'Adversarial_Accuracy': results[conf]['adversarial_accuracy'],
-                'Accuracy_Improvement': results[conf]['adversarial_accuracy'] - results[conf]['original_accuracy'],
-                'Original_Loss': results[conf]['original_loss'],
-                'Adversarial_Loss': results[conf]['adversarial_loss'],
-                'Loss_Decrease': results[conf]['original_loss'] - results[conf]['adversarial_loss']
+                'Confidence': confidence,
+                'Success_Rate': results[confidence]['successful_attacks'] / results[confidence]['total'],
+                'Avg_Iterations': results[confidence]['avg_iterations'],
+                'Original_Accuracy': results[confidence]['original_accuracy'],
+                'Adversarial_Accuracy': results[confidence]['adversarial_accuracy'],
+                'Accuracy_Reduction': results[confidence]['original_accuracy'] - results[confidence]['adversarial_accuracy'],
+                'Original_Loss': results[confidence]['original_loss'],
+                'Adversarial_Loss': results[confidence]['adversarial_loss'],
+                'Loss_Increase': results[confidence]['adversarial_loss'] - results[confidence]['original_loss']
             })
     
-    print("\nResults saved to 'ifgs_results/metrics.csv'")
-    print("Comparison plots saved to 'ifgs_results/metrics_comparison.png'")
+    print("\nResults saved to 'multi-label-classification/Adversarial/ifgs_results/metrics.csv'")
+    print("Comparison plots saved to 'multi-label-classification/Adversarial/ifgs_results/metrics_comparison.png'")
 
 
 # --- Main Script: Load model and test with IFGS/IAN attack ---

@@ -134,15 +134,18 @@ def visualize_attack(original_image, noisy_image, original_label,
     plt.close()
 
 
-def test_model_robustness(model, test_dir, num_samples=5):
+def test_model_robustness(model, test_dir, num_samples=50):
     """Test model robustness against Gaussian noise."""
     test_files = [f for f in os.listdir(test_dir) if f.endswith(('.png', '.jpg'))]
     test_files = test_files[:num_samples]  # Limit number of samples
     
-    results = {noise_level: {'successful_attacks': 0, 'total': 0,
-                             'original_loss': 0, 'noisy_loss': 0,
-                             'original_accuracy': 0, 'noisy_accuracy': 0} 
-               for noise_level in NOISE_LEVELS}
+    results = {sigma: {'successful_attacks': 0, 'total': 0,
+                       'original_loss': 0, 'noisy_loss': 0,
+                       'original_accuracy': 0, 'noisy_accuracy': 0} 
+               for sigma in NOISE_LEVELS}
+    
+    skipped_samples = 0
+    processed_samples = 0
     
     for file in test_files:
         image_path = os.path.join(test_dir, file)
@@ -152,37 +155,57 @@ def test_model_robustness(model, test_dir, num_samples=5):
         label_sequence_batch = tf.expand_dims(label_sequence, 0)
         
         # Get original prediction
-        original_img_batch = tf.expand_dims(original_image, axis=0)
+        original_img_batch = tf.expand_dims(original_image, 0)
         original_preds = model.predict(original_img_batch, verbose=0)
         original_pred_indices = np.argmax(original_preds, axis=-1)[0]
         predicted_original = ''.join([idx_to_char.get(idx, '') for idx in original_pred_indices if idx != 0])
         
-        # Calculate original loss and accuracy
+        # Check if original prediction is correct, skip if not
+        if predicted_original != original_label:
+            print(f"Skipping {file}: original prediction '{predicted_original}' doesn't match label '{original_label}'")
+            skipped_samples += 1
+            continue
+        
+        processed_samples += 1
+        
+        # Calculate original loss
         original_loss = tf.keras.losses.sparse_categorical_crossentropy(
             label_sequence_batch, original_preds, from_logits=False
         )
         original_loss = tf.reduce_mean(original_loss).numpy()
         
+        # Calculate character-level accuracy
+        original_correct = tf.cast(tf.equal(tf.cast(label_sequence_batch, tf.int64), 
+                                         tf.argmax(original_preds, axis=-1)), tf.float32)
+        original_char_accuracy = tf.reduce_mean(original_correct).numpy()
+        
         # Calculate sequence-level accuracy (full sequence correct)
         original_seq_correct = tf.reduce_all(tf.equal(tf.cast(label_sequence_batch, tf.int64),
-                                                 tf.argmax(original_preds, axis=-1)), axis=1)
+                                                   tf.argmax(original_preds, axis=-1)), axis=1)
         original_seq_accuracy = tf.reduce_mean(tf.cast(original_seq_correct, tf.float32)).numpy()
         
-        for noise_level in NOISE_LEVELS:
-            # Create noisy image
-            noisy_image = add_gaussian_noise(original_image, noise_level)
+        true_label = original_label  # For consistency with existing code
+        
+        for sigma in NOISE_LEVELS:
+            # Create noisy example
+            noisy_image = add_gaussian_noise(original_image, sigma)
             
-            # Get prediction on noisy image
+            # Get noisy prediction
             noisy_img_batch = tf.expand_dims(noisy_image, axis=0)
             noisy_preds = model.predict(noisy_img_batch, verbose=0)
             noisy_pred_indices = np.argmax(noisy_preds, axis=-1)[0]
             predicted_noisy = ''.join([idx_to_char.get(idx, '') for idx in noisy_pred_indices if idx != 0])
             
-            # Calculate noisy loss and accuracy
+            # Calculate noisy loss
             noisy_loss = tf.keras.losses.sparse_categorical_crossentropy(
                 label_sequence_batch, noisy_preds, from_logits=False
             )
             noisy_loss = tf.reduce_mean(noisy_loss).numpy()
+            
+            # Calculate character-level accuracy
+            noisy_correct = tf.cast(tf.equal(tf.cast(label_sequence_batch, tf.int64), 
+                                          tf.argmax(noisy_preds, axis=-1)), tf.float32)
+            noisy_char_accuracy = tf.reduce_mean(noisy_correct).numpy()
             
             # Calculate sequence-level accuracy (full sequence correct)
             noisy_seq_correct = tf.reduce_all(tf.equal(tf.cast(label_sequence_batch, tf.int64),
@@ -190,30 +213,36 @@ def test_model_robustness(model, test_dir, num_samples=5):
             noisy_seq_accuracy = tf.reduce_mean(tf.cast(noisy_seq_correct, tf.float32)).numpy()
             
             # Check if attack was successful
-            if predicted_noisy != original_label:
-                results[noise_level]['successful_attacks'] += 1
+            if predicted_noisy != true_label:
+                results[sigma]['successful_attacks'] += 1
                 
                 # Save visualization for successful attacks
-                save_path = f'noise_results/sigma_{noise_level}_{file}'
+                save_path = f'multi-label-classification/Adversarial/noise_results/examples/sigma_{sigma}_{file}'
                 visualize_attack(
                     original_image, noisy_image, original_label,
-                    predicted_original, predicted_noisy, noise_level, save_path
+                    predicted_original, predicted_noisy, sigma, save_path
                 )
             
             # Update metrics
-            results[noise_level]['total'] += 1
-            results[noise_level]['original_loss'] += original_loss
-            results[noise_level]['noisy_loss'] += noisy_loss
-            results[noise_level]['original_accuracy'] += original_seq_accuracy
-            results[noise_level]['noisy_accuracy'] += noisy_seq_accuracy
+            results[sigma]['total'] += 1
+            results[sigma]['original_loss'] += original_loss
+            results[sigma]['noisy_loss'] += noisy_loss
+            results[sigma]['original_accuracy'] += original_seq_accuracy
+            results[sigma]['noisy_accuracy'] += noisy_seq_accuracy
     
     # Calculate averages
-    for noise_level in NOISE_LEVELS:
-        if results[noise_level]['total'] > 0:
-            results[noise_level]['original_loss'] /= results[noise_level]['total']
-            results[noise_level]['noisy_loss'] /= results[noise_level]['total']
-            results[noise_level]['original_accuracy'] /= results[noise_level]['total']
-            results[noise_level]['noisy_accuracy'] /= results[noise_level]['total']
+    for sigma in NOISE_LEVELS:
+        if results[sigma]['total'] > 0:
+            results[sigma]['original_loss'] /= results[sigma]['total']
+            results[sigma]['noisy_loss'] /= results[sigma]['total']
+            results[sigma]['original_accuracy'] /= results[sigma]['total']
+            results[sigma]['noisy_accuracy'] /= results[sigma]['total']
+    
+    # Print summary of processed vs skipped samples
+    print(f"\nSummary of processed samples:")
+    print(f"  Total images checked: {len(test_files)}")
+    print(f"  Images with correct original predictions: {processed_samples}")
+    print(f"  Images skipped (incorrect original predictions): {skipped_samples}")
     
     return results
 
@@ -225,7 +254,9 @@ def full_sequence_accuracy(y_true, y_pred):
 
 def main():
     # Create results directory
-    os.makedirs('noise_results', exist_ok=True)
+    os.makedirs('multi-label-classification/Adversarial/noise_results', exist_ok=True)
+    # Create examples subdirectory for images
+    os.makedirs('multi-label-classification/Adversarial/noise_results/examples', exist_ok=True)
     
     # Load the trained model
     model = tf.keras.models.load_model("best_double_conv_layers_model.keras")
@@ -247,31 +278,31 @@ def main():
     
     # Print results
     print("\nAttack Success Rates:")
-    for noise_level in NOISE_LEVELS:
-        success_rate = results[noise_level]['successful_attacks'] / results[noise_level]['total']
-        print(f"σ = {noise_level}: {success_rate:.2%} ({results[noise_level]['successful_attacks']}/{results[noise_level]['total']})")
+    for sigma in NOISE_LEVELS:
+        success_rate = results[sigma]['successful_attacks'] / results[sigma]['total']
+        print(f"σ = {sigma}: {success_rate:.2%} ({results[sigma]['successful_attacks']}/{results[sigma]['total']})")
     
     # Print accuracy and loss metrics
     print("\nAccuracy and Loss Metrics:")
-    for noise_level in NOISE_LEVELS:
-        print(f"\nNoise Level (σ) = {noise_level}:")
-        print(f"  Original Accuracy: {results[noise_level]['original_accuracy']:.4f}")
-        print(f"  Noisy Accuracy: {results[noise_level]['noisy_accuracy']:.4f}")
-        print(f"  Accuracy Reduction: {results[noise_level]['original_accuracy'] - results[noise_level]['noisy_accuracy']:.4f}")
-        print(f"  Original Loss: {results[noise_level]['original_loss']:.4f}")
-        print(f"  Noisy Loss: {results[noise_level]['noisy_loss']:.4f}")
-        print(f"  Loss Increase: {results[noise_level]['noisy_loss'] - results[noise_level]['original_loss']:.4f}")
+    for sigma in NOISE_LEVELS:
+        print(f"\nSigma = {sigma}:")
+        print(f"  Original Accuracy: {results[sigma]['original_accuracy']:.4f}")
+        print(f"  Noisy Accuracy: {results[sigma]['noisy_accuracy']:.4f}")
+        print(f"  Accuracy Reduction: {results[sigma]['original_accuracy'] - results[sigma]['noisy_accuracy']:.4f}")
+        print(f"  Original Loss: {results[sigma]['original_loss']:.4f}")
+        print(f"  Noisy Loss: {results[sigma]['noisy_loss']:.4f}")
+        print(f"  Loss Increase: {results[sigma]['noisy_loss'] - results[sigma]['original_loss']:.4f}")
     
-    # Plot results
+    # Plot success rates
     plt.figure(figsize=(15, 5))
     
     # Plot attack success rates
     plt.subplot(1, 3, 1)
     noise_levels = list(results.keys())
-    success_rates = [results[level]['successful_attacks'] / results[level]['total'] for level in noise_levels]
+    success_rates = [results[sigma]['successful_attacks'] / results[sigma]['total'] for sigma in noise_levels]
     
     plt.plot(noise_levels, success_rates, 'o-', linewidth=2, markersize=8)
-    plt.xlabel('Noise Level (σ)')
+    plt.xlabel('Sigma (Noise Level)')
     plt.ylabel('Attack Success Rate')
     plt.title('Gaussian Noise Attack Success Rate')
     plt.grid(True, alpha=0.3)
@@ -279,12 +310,12 @@ def main():
     
     # Plot accuracy comparison
     plt.subplot(1, 3, 2)
-    original_accuracies = [results[level]['original_accuracy'] for level in noise_levels]
-    noisy_accuracies = [results[level]['noisy_accuracy'] for level in noise_levels]
+    original_accuracies = [results[sigma]['original_accuracy'] for sigma in noise_levels]
+    noisy_accuracies = [results[sigma]['noisy_accuracy'] for sigma in noise_levels]
     
     plt.plot(noise_levels, original_accuracies, 'o-', linewidth=2, markersize=8, label='Original')
     plt.plot(noise_levels, noisy_accuracies, 'o-', linewidth=2, markersize=8, label='Noisy')
-    plt.xlabel('Noise Level (σ)')
+    plt.xlabel('Sigma (Noise Level)')
     plt.ylabel('Accuracy')
     plt.title('Accuracy Comparison')
     plt.grid(True, alpha=0.3)
@@ -293,43 +324,44 @@ def main():
     
     # Plot loss comparison
     plt.subplot(1, 3, 3)
-    original_losses = [results[level]['original_loss'] for level in noise_levels]
-    noisy_losses = [results[level]['noisy_loss'] for level in noise_levels]
+    original_losses = [results[sigma]['original_loss'] for sigma in noise_levels]
+    noisy_losses = [results[sigma]['noisy_loss'] for sigma in noise_levels]
     
     plt.plot(noise_levels, original_losses, 'o-', linewidth=2, markersize=8, label='Original')
     plt.plot(noise_levels, noisy_losses, 'o-', linewidth=2, markersize=8, label='Noisy')
-    plt.xlabel('Noise Level (σ)')
+    plt.xlabel('Sigma (Noise Level)')
     plt.ylabel('Loss')
     plt.title('Loss Comparison')
     plt.grid(True, alpha=0.3)
     plt.legend()
     
     plt.tight_layout()
-    plt.savefig('noise_results/metrics_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig('multi-label-classification/Adversarial/noise_results/metrics_comparison.png', dpi=300, bbox_inches='tight')
     plt.close()
     
     # Save results to CSV
     import csv
-    with open('noise_results/metrics.csv', 'w', newline='') as csvfile:
-        fieldnames = ['Noise_Level', 'Success_Rate', 'Original_Accuracy', 'Noisy_Accuracy', 
+    with open('multi-label-classification/Adversarial/noise_results/metrics.csv', 'w', newline='') as csvfile:
+        fieldnames = ['Sigma', 'Success_Rate', 'Original_Accuracy', 'Noisy_Accuracy', 
                      'Accuracy_Reduction', 'Original_Loss', 'Noisy_Loss', 'Loss_Increase']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         
         writer.writeheader()
-        for noise_level in NOISE_LEVELS:
+        for sigma in NOISE_LEVELS:
             writer.writerow({
-                'Noise_Level': noise_level,
-                'Success_Rate': results[noise_level]['successful_attacks'] / results[noise_level]['total'],
-                'Original_Accuracy': results[noise_level]['original_accuracy'],
-                'Noisy_Accuracy': results[noise_level]['noisy_accuracy'],
-                'Accuracy_Reduction': results[noise_level]['original_accuracy'] - results[noise_level]['noisy_accuracy'],
-                'Original_Loss': results[noise_level]['original_loss'],
-                'Noisy_Loss': results[noise_level]['noisy_loss'],
-                'Loss_Increase': results[noise_level]['noisy_loss'] - results[noise_level]['original_loss']
+                'Sigma': sigma,
+                'Success_Rate': results[sigma]['successful_attacks'] / results[sigma]['total'],
+                'Original_Accuracy': results[sigma]['original_accuracy'],
+                'Noisy_Accuracy': results[sigma]['noisy_accuracy'],
+                'Accuracy_Reduction': results[sigma]['original_accuracy'] - results[sigma]['noisy_accuracy'],
+                'Original_Loss': results[sigma]['original_loss'],
+                'Noisy_Loss': results[sigma]['noisy_loss'],
+                'Loss_Increase': results[sigma]['noisy_loss'] - results[sigma]['original_loss']
             })
     
-    print("\nResults saved to 'noise_results/metrics.csv'")
-    print("Comparison plots saved to 'noise_results/metrics_comparison.png'")
+    print("\nResults saved to 'multi-label-classification/Adversarial/noise_results/metrics.csv'")
+    print("Comparison plots saved to 'multi-label-classification/Adversarial/noise_results/metrics_comparison.png'")
+    print("Example images saved to 'multi-label-classification/Adversarial/noise_results/examples/'")
 
 
 # --- Main Script: Load model and test on a sample image ---
