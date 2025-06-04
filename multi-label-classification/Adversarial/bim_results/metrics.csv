@@ -1,11 +1,11 @@
 Metric,Value
 Success_Rate,1.0
-Avg_Char_Error_Increase,0.9825784
-Avg_Loss_Change,1500.7533
+Avg_Char_Error_Increase,1.0
+Avg_Loss_Change,1585.6636
 Avg_Iterations,40.0
 Original_Accuracy,1.0
 Adversarial_Accuracy,0.0
 Accuracy_Reduction,1.0
-Original_Loss,0.030511338
-Adversarial_Loss,15.790187
-Loss_Increase,15.759676
+Original_Loss,0.02654651
+Adversarial_Loss,16.1181
+Loss_Increase,16.091553

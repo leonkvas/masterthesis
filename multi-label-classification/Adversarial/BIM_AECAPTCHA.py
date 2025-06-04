@@ -222,7 +222,7 @@ def character_accuracy(true_label, predicted_label):
     return correct / len(true_label) if len(true_label) > 0 else 0
 
 
-def test_model_robustness(model, test_dir, num_samples=50):
+def test_model_robustness(model, test_dir, num_samples=5):
     """Test model robustness against AECAPTCHA using BIM attack."""
     test_files = [f for f in os.listdir(test_dir) if f.endswith(('.png', '.jpg'))]
     test_files = test_files[:num_samples]  # Limit number of samples
@@ -323,11 +323,16 @@ def test_model_robustness(model, test_dir, num_samples=50):
             overall_results['successful_attacks'] += 1
             
             # Save visualization for successful attacks
-            save_path = f'multi-label-classification/Adversarial/bim_results/example_images/aecaptcha_{file}'
+            save_path = f'multi-label-classification/Adversarial/bim_results/aecaptcha_epsilon_{EPSILON}_{file}'
             visualize_attack(
                 original_image, adv_image, original_label,
                 original_pred, adversarial_pred, loss_change, save_path
             )
+            # save adversarial image
+            adv_image_np = adv_image.numpy().squeeze()  # Convert tensor to numpy array and remove extra dimensions
+            adv_image_np = (adv_image_np * 255).astype(np.uint8)  # Scale to 0-255 and convert to uint8
+            adv_image_pil = Image.fromarray(adv_image_np)  # Convert to PIL Image
+            adv_image_pil.save(f'multi-label-classification/Adversarial/bim_results/example_images/{file}')
         
         overall_results['total_samples'] += 1
         overall_results['total_char_error_increase'] += char_error_increase

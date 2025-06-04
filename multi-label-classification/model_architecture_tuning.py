@@ -311,60 +311,6 @@ def create_model_enhanced_augmentation(input_shape=IMG_SIZE + (1,), max_len=max_
     model = tf.keras.Model(inputs, outputs)
     return model
 
-# Model 7: Add Extra Conv Layer and Deeper Dense
-def create_model_extra_layers(input_shape=IMG_SIZE + (1,), max_len=max_captcha_len, vocab_size=vocab_size):
-    inputs = tf.keras.Input(shape=input_shape)
-    
-    # Enhanced data augmentation
-    data_augmentation = tf.keras.Sequential([
-        layers.RandomSharpness(factor=(0.4, 0.8)),
-        layers.RandomRotation(factor=0.03),
-        layers.RandomZoom(height_factor=(-0.05, 0.05), width_factor=(-0.05, 0.05)),
-    ])
-    x = data_augmentation(inputs)
-    
-    # First 3 blocks same as Model 6
-    x = layers.Conv2D(32, (3, 3), activation='relu', padding='same')(x)
-    x = layers.Conv2D(32, (3, 3), activation='relu', padding='same')(x)
-    x = layers.BatchNormalization()(x)
-    x = layers.MaxPooling2D((2, 2))(x)
-    
-    x = layers.Conv2D(64, (3, 3), activation='relu', padding='same')(x)
-    x = layers.Conv2D(64, (3, 3), activation='relu', padding='same')(x)
-    x = layers.BatchNormalization()(x)
-    x = layers.MaxPooling2D((2, 2))(x)
-    
-    shortcut = x
-    x = layers.Conv2D(128, (3, 3), activation='relu', padding='same')(x)
-    x = layers.Conv2D(128, (3, 3), activation='relu', padding='same')(x)
-    shortcut = layers.Conv2D(128, (1, 1), padding='same')(shortcut)
-    x = layers.add([x, shortcut])
-    x = layers.Activation('relu')(x)
-    x = layers.BatchNormalization()(x)
-    x = layers.MaxPooling2D((2, 2))(x)
-    
-    # Add an extra convolutional layer group
-    x = layers.Conv2D(192, (3, 3), activation='relu', padding='same')(x)
-    x = layers.Conv2D(192, (3, 3), activation='relu', padding='same')(x)
-    x = layers.BatchNormalization()(x)
-    
-    x = layers.Flatten()(x)
-    x = layers.Dense(384, activation='relu')(x)  # Larger dense layer
-    x = layers.BatchNormalization()(x)
-    x = layers.Dropout(0.4)(x)
-    
-    # Additional dense layer
-    x = layers.Dense(256, activation='relu')(x)
-    x = layers.BatchNormalization()(x)
-    x = layers.Dropout(0.3)(x)
-    
-    x = layers.Dense(max_len * vocab_size)(x)
-    outputs = layers.Reshape((max_len, vocab_size))(x)
-    outputs = layers.Activation('softmax')(outputs)
-    
-    model = tf.keras.Model(inputs, outputs)
-    return model
-
 # Define the models to test with their descriptions
 model_configs = [
     {
@@ -396,11 +342,6 @@ model_configs = [
         "name": "Enhanced Augmentation",
         "function": create_model_enhanced_augmentation,
         "description": "Added rotation and zoom augmentations"
-    },
-    {
-        "name": "Complete Model",
-        "function": create_model_extra_layers,
-        "description": "Extra conv layer (192) and deeper dense layers (384→256)"
     }
 ]
 
@@ -427,13 +368,6 @@ def train_and_evaluate_model(model_fn, model_name, train_ds, val_ds):
             verbose=1,
             mode='min'
         ),
-        #EarlyStopping(
-        #    monitor='val_full_sequence_accuracy',
-        #    patience=7,
-        #    restore_best_weights=True,
-        #    verbose=1,
-        #    mode='max'
-        #  ),
         ModelCheckpoint(
             f'best_{model_name.replace(" ", "_").lower()}.keras',
             monitor='val_full_sequence_accuracy',
@@ -510,7 +444,7 @@ if __name__ == "__main__":
     
     # Create results DataFrame and save to CSV
     results_df = pd.DataFrame(all_results)
-    results_df.to_csv("saved_models_32_50epochs/architecture_tuning_results.csv", index=False)
+    results_df.to_csv("saved_models_32_50epochsNew/architecture_tuning_results.csv", index=False)
     print("\nAll results saved to architecture_tuning_results.csv")
     
     # Plot comparison of results
@@ -532,35 +466,80 @@ if __name__ == "__main__":
     plt.xticks(rotation=45, ha='right')
     
     plt.tight_layout()
-    plt.savefig("saved_models_32_50epochs/architecture_comparison.png")
+    plt.savefig("saved_models_32_50epochsNew/architecture_comparison.png")
     plt.close()
     
-    # Plot training histories
-    plt.figure(figsize=(15, 10))
+    # Plot training histories for last 3 models
+    plt.figure(figsize=(15, 15))
     
-    # Plot accuracy histories
-    plt.subplot(2, 1, 1)
-    for model_name, history in histories.items():
-        plt.plot(history.history['val_full_sequence_accuracy'], label=model_name)
+    # Define colors for the last 3 models
+    model_colors = {
+        "Double Conv Layers": "#1f77b4",  # Blue
+        "With Residual Connection": "#ff7f0e",  # Orange
+        "Enhanced Augmentation": "#2ca02c"  # Green
+    }
     
-    plt.title('Validation Sequence Accuracy During Training')
-    plt.ylabel('Accuracy')
-    plt.xlabel('Epoch')
+    # Plot sequence accuracy histories
+    plt.subplot(3, 1, 1)
+    for model_name in list(histories.keys())[-3:]:  # Only last 3 models
+        color = model_colors[model_name]
+        plt.plot(histories[model_name].history['full_sequence_accuracy'], 
+                label=f'{model_name} (Train)', 
+                linestyle='--', 
+                color=color)
+        plt.plot(histories[model_name].history['val_full_sequence_accuracy'], 
+                label=f'{model_name} (Val)', 
+                linestyle='-', 
+                color=color)
+    
+    plt.title('Sequence Accuracy During Training', fontsize=12, pad=10)
+    plt.ylabel('Accuracy', fontsize=10)
+    plt.xlabel('Epoch', fontsize=10)
     plt.legend(loc='lower right')
     plt.grid(True, alpha=0.3)
+    plt.ylim(0, 1)
+    
+    # Plot character accuracy histories
+    plt.subplot(3, 1, 2)
+    for model_name in list(histories.keys())[-3:]:  # Only last 3 models
+        color = model_colors[model_name]
+        plt.plot(histories[model_name].history['accuracy'], 
+                label=f'{model_name} (Train)', 
+                linestyle='--', 
+                color=color)
+        plt.plot(histories[model_name].history['val_accuracy'], 
+                label=f'{model_name} (Val)', 
+                linestyle='-', 
+                color=color)
+    
+    plt.title('Character Accuracy During Training', fontsize=12, pad=10)
+    plt.ylabel('Accuracy', fontsize=10)
+    plt.xlabel('Epoch', fontsize=10)
+    plt.legend(loc='lower right')
+    plt.grid(True, alpha=0.3)
+    plt.ylim(0, 1)
     
     # Plot loss histories
-    plt.subplot(2, 1, 2)
-    for model_name, history in histories.items():
-        plt.plot(history.history['val_loss'], label=model_name)
+    plt.subplot(3, 1, 3)
+    for model_name in list(histories.keys())[-3:]:  # Only last 3 models
+        color = model_colors[model_name]
+        plt.plot(histories[model_name].history['loss'], 
+                label=f'{model_name} (Train)', 
+                linestyle='--', 
+                color=color)
+        plt.plot(histories[model_name].history['val_loss'], 
+                label=f'{model_name} (Val)', 
+                linestyle='-', 
+                color=color)
     
-    plt.title('Validation Loss During Training')
-    plt.ylabel('Loss')
-    plt.xlabel('Epoch')
+    plt.title('Loss During Training', fontsize=12, pad=10)
+    plt.ylabel('Loss', fontsize=10)
+    plt.xlabel('Epoch', fontsize=10)
     plt.legend(loc='upper right')
     plt.grid(True, alpha=0.3)
     
     plt.tight_layout()
-    plt.savefig("saved_models_32_50epochs/training_histories.png")
+    plt.savefig("saved_models_32_50epochsNew/training_histories.png", dpi=300)
+    plt.close()
     
     print("\nResults visualization saved as architecture_comparison.png and training_histories.png") 

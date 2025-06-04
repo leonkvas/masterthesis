@@ -9,6 +9,7 @@ from PIL import Image
 import time
 import seaborn as sns
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+from datetime import datetime
 
 # --- Parameters (must match training) ---
 IMG_SIZE = (50, 250)  # (height, width)
@@ -19,12 +20,20 @@ SOURCE_MODEL_PATH = "best_double_conv_layers_model.keras"
 TARGET_MODEL_PATHS = [
     "best_with_residual_connection.keras",
     "best_enhanced_augmentation.keras",
-    "best_with_residual_connection.keras"
+    "best_with_residual_connection.keras",
+    "best_robust_model.keras",
+    "best_robust_model2.keras",
+    "best_robust_augmented_model.keras",
+    "best_robust_augmented_model2.keras",
+    #"multi-label-classification/Adversarial/preprocessing_results/bit_depth_reduction_20250522_125053/bitdepth.keras",
+    #"multi-label-classification/Adversarial/preprocessing_results/gaussian_smoothing_20250522_134609/gaussiansmoothing.keras",
+    #"multi-label-classification/Adversarial/preprocessing_results/tv_minimization_20250522_123827/tvminim.keras",
+    #"multi-label-classification/Adversarial/preprocessing_results/two_step_20250522_130209/twostep.keras"
 ]
 
 # Adversarial examples directory
 ADV_EXAMPLES_DIR = "multi-label-classification/Adversarial/transferability_examples"
-RESULTS_DIR = "multi-label-classification/Adversarial/transferability_results"
+RESULTS_DIR = "multi-label-classification/Adversarial/"+datetime.now().strftime("%Y%m%d_%H%M%S")+"/transferability_results"
 
 # Vocabulary settings
 vocab = list("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ")
@@ -104,10 +113,8 @@ def evaluate_transferability(model, model_name, metadata):
             
             correct_predictions = 0
             incorrect_predictions = 0
-            
-            # Track success of adversarial examples that worked on source model
-            source_succeeded = [ex for ex in group if ex["attack_success"]]
-            target_succeeded_from_source = 0
+            total_chars = 0
+            correct_chars = 0
             
             for example in group:
                 # Load adversarial image
@@ -126,39 +133,36 @@ def evaluate_transferability(model, model_name, metadata):
                 # Check if prediction is correct (matches original label)
                 is_correct = prediction == original_label
                 
+                # Calculate character-level accuracy
+                total_chars += len(original_label)
+                correct_chars += sum(1 for a, b in zip(prediction, original_label) if a == b)
+                
                 if is_correct:
                     correct_predictions += 1
                 else:
                     incorrect_predictions += 1
-                    # If this example succeeded on source model, count it
-                    if example["attack_success"]:
-                        target_succeeded_from_source += 1
             
-            # Calculate transferability metrics
+            # Calculate metrics
             total = len(group)
-            success_rate = incorrect_predictions / total if total > 0 else 0
-            
-            # Calculate transfer ratio - how many examples that fooled source model also fool target
-            transfer_ratio = 0
-            if len(source_succeeded) > 0:
-                transfer_ratio = target_succeeded_from_source / len(source_succeeded)
+            success_rate = correct_predictions / total if total > 0 else 0
+            char_accuracy = correct_chars / total_chars if total_chars > 0 else 0
             
             result = {
                 "model": model_name,
                 "attack_method": attack_method,
                 "attack_parameter": str(param),
                 "total_examples": total,
-                "successful_attacks": incorrect_predictions,
+                "correct_predictions": correct_predictions,
                 "success_rate": success_rate,
-                "source_model_successes": len(source_succeeded),
-                "transferred_successes": target_succeeded_from_source,
-                "transfer_ratio": transfer_ratio
+                "total_chars": total_chars,
+                "correct_chars": correct_chars,
+                "char_accuracy": char_accuracy
             }
             
             results[attack_method].append(result)
             
-            print(f"    Success rate: {success_rate:.2%} ({incorrect_predictions}/{total})")
-            print(f"    Transfer ratio: {transfer_ratio:.2%} ({target_succeeded_from_source}/{len(source_succeeded)})")
+            print(f"    Full sequence accuracy: {success_rate:.2%} ({correct_predictions}/{total})")
+            print(f"    Character accuracy: {char_accuracy:.2%} ({correct_chars}/{total_chars})")
     
     return results
 
@@ -179,30 +183,30 @@ def visualize_transferability(results, attack_methods):
         
         df = pd.DataFrame(all_results)
         
-        # Plot success rates
+        # Plot success rates (now showing full sequence accuracy)
         plt.figure(figsize=(12, 8))
         sns.barplot(x='attack_parameter', y='success_rate', hue='model', data=df)
-        plt.title(f'{attack_method.upper()} Attack Success Rate by Model')
+        plt.title(f'{attack_method.upper()} Full Sequence Accuracy by Model')
         plt.xlabel('Attack Parameter')
-        plt.ylabel('Success Rate')
+        plt.ylabel('Full Sequence Accuracy')
         plt.xticks(rotation=45)
         plt.ylim(0, 1)
         plt.legend(title='Model')
         plt.tight_layout()
-        plt.savefig(os.path.join(RESULTS_DIR, f'{attack_method}_success_rates.png'), dpi=300)
+        plt.savefig(os.path.join(RESULTS_DIR, f'{attack_method}_full_sequence_accuracy.png'), dpi=300)
         plt.close()
         
-        # Plot transfer ratios
+        # Plot character accuracy
         plt.figure(figsize=(12, 8))
-        sns.barplot(x='attack_parameter', y='transfer_ratio', hue='model', data=df)
-        plt.title(f'{attack_method.upper()} Transfer Ratio by Model')
+        sns.barplot(x='attack_parameter', y='char_accuracy', hue='model', data=df)
+        plt.title(f'{attack_method.upper()} Character Accuracy by Model')
         plt.xlabel('Attack Parameter')
-        plt.ylabel('Transfer Ratio (% of source successes that transferred)')
+        plt.ylabel('Character Accuracy')
         plt.xticks(rotation=45)
         plt.ylim(0, 1)
         plt.legend(title='Model')
         plt.tight_layout()
-        plt.savefig(os.path.join(RESULTS_DIR, f'{attack_method}_transfer_ratios.png'), dpi=300)
+        plt.savefig(os.path.join(RESULTS_DIR, f'{attack_method}_char_accuracy.png'), dpi=300)
         plt.close()
     
     # Create comparison plot across all attack methods
@@ -217,19 +221,19 @@ def visualize_transferability(results, attack_methods):
     if all_data:
         df_all = pd.DataFrame(all_data)
         
-        # Calculate average transfer ratio by attack method and model
-        avg_transfer = df_all.groupby(['attack_method', 'model'])['transfer_ratio'].mean().reset_index()
+        # Calculate average character accuracy by attack method and model
+        avg_char_acc = df_all.groupby(['attack_method', 'model'])['char_accuracy'].mean().reset_index()
         
         plt.figure(figsize=(14, 8))
-        sns.barplot(x='attack_method', y='transfer_ratio', hue='model', data=avg_transfer)
-        plt.title('Average Transfer Ratio by Attack Method and Model')
+        sns.barplot(x='attack_method', y='char_accuracy', hue='model', data=avg_char_acc)
+        plt.title('Average Character Accuracy by Attack Method and Model')
         plt.xlabel('Attack Method')
-        plt.ylabel('Average Transfer Ratio')
+        plt.ylabel('Average Character Accuracy')
         plt.ylim(0, 1)
         plt.xticks(rotation=45)
         plt.legend(title='Model')
         plt.tight_layout()
-        plt.savefig(os.path.join(RESULTS_DIR, 'average_transfer_ratios.png'), dpi=300)
+        plt.savefig(os.path.join(RESULTS_DIR, 'average_char_accuracy.png'), dpi=300)
         plt.close()
 
 def load_model_with_custom_objects(model_path):
@@ -299,8 +303,8 @@ def main():
     csv_path = os.path.join(RESULTS_DIR, "transferability_results.csv")
     with open(csv_path, 'w', newline='') as f:
         fieldnames = ["model", "attack_method", "attack_parameter", "total_examples", 
-                     "successful_attacks", "success_rate", "source_model_successes", 
-                     "transferred_successes", "transfer_ratio"]
+                     "correct_predictions", "success_rate", "total_chars", 
+                     "correct_chars", "char_accuracy"]
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         

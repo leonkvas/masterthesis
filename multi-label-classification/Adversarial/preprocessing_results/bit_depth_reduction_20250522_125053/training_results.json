@@ -1,0 +1,11 @@
+{
+  "transform_name": "bit_depth_reduction",
+  "timestamp": "20250522_125053",
+  "training_time": 675.4432556629181,
+  "final_loss": 0.24010294675827026,
+  "final_accuracy": 0.9456906914710999,
+  "final_sequence_accuracy": 0.7734375,
+  "best_accuracy": 0.7734375,
+  "best_epoch": 35,
+  "model_parameters": 6450019
+}

@@ -1,0 +1,11 @@
+{
+  "transform_name": "two_step",
+  "timestamp": "20250522_130209",
+  "training_time": 778.1434967517853,
+  "final_loss": 0.3329204022884369,
+  "final_accuracy": 0.9332940578460693,
+  "final_sequence_accuracy": 0.69140625,
+  "best_accuracy": 0.71875,
+  "best_epoch": 43,
+  "model_parameters": 6450019
+}

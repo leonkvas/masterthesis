@@ -12,7 +12,7 @@ import itertools
 # --- Parameters to Tune ---
 LEARNING_RATES = [0.0001, 0.0005, 0.001]
 BATCH_SIZES = [16, 32]
-EPOCHS = [30, 50]
+EPOCHS = [50, 75]
 
 # Fixed parameters
 IMG_SIZE = (50, 250)
@@ -289,11 +289,6 @@ model_configs = [
         "name": "Enhanced Augmentation",
         "function": create_model_enhanced_augmentation,
         "description": "Added rotation and zoom augmentations"
-    },
-    {
-        "name": "Complete Model",
-        "function": create_model_extra_layers,
-        "description": "Extra conv layer (192) and deeper dense layers (384→256)"
     }
 ]
 
@@ -374,7 +369,7 @@ def train_and_evaluate_model(model_fn, model_name, train_ds, val_ds, learning_ra
 # --- Main Execution ---
 if __name__ == "__main__":
     # Create results directory if it doesn't exist
-    results_dir = "saved_models_hyperparameter_tuning"
+    results_dir = "saved_models_hyperparameter_tuning_new"
     os.makedirs(results_dir, exist_ok=True)
     
     # Results storage

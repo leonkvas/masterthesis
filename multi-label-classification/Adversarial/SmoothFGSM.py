@@ -250,7 +250,7 @@ def visualize_attack(original_image, smoothed_image, adversarial_image, original
     plt.close()
 
 
-def test_model_robustness(model, test_dir, num_samples=50):
+def test_model_robustness(model, test_dir, num_samples=25):
     """Test model robustness against Smoothed FGSM attacks."""
     test_files = [f for f in os.listdir(test_dir) if f.endswith(('.png', '.jpg'))]
     test_files = test_files[:num_samples]  # Limit number of samples

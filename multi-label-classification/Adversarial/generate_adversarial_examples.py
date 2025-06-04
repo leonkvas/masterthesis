@@ -6,6 +6,7 @@ import csv
 import matplotlib.pyplot as plt
 from PIL import Image
 import time
+import random
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 # --- Parameters (must match training) ---
@@ -14,12 +15,14 @@ BATCH_SIZE = 16
 CHANNELS = 1  # Grayscale images
 
 # Attack parameters
-FGSM_EPSILONS = [0.1, 0.5, 1.0, 2.0]
-GAUSSIAN_SIGMAS = [0.1, 0.2, 0.3, 0.4]
+FGSM_EPSILONS = [1, 2, 3]
+GAUSSIAN_SIGMAS = [0.1, 0.2, 0.25]
 IFGS_CONFIDENCE_TARGETS = [0.7, 0.8, 0.9]
-BIM_EPSILONS = [0.01, 0.05, 0.1]
-BIM_ITERATIONS = 10
-SMOOTH_FGSM_PARAMS = [(0.5, 0.5), (1.0, 1.0), (1.5, 1.0), (1.0, 1.5)]  # (sigma, epsilon) pairs
+BIM_EPSILONS = [0.1, 0.2, 0.5]
+BIM_ITERATIONS = 40 # less iterations aswell which didnt give perfect results
+SMOOTH_FGSM_PARAMS = [(0.5, 1.0), (0.5, 2.0), (1.0, 2.0), (1.5, 2.0), (2.0, 2.0)]  # (sigma, epsilon) pairs (based off the accuracy reduction heatmap.png)
+
+num_samples = 50
 
 # Model paths
 SOURCE_MODEL_PATH = "best_double_conv_layers_model.keras"
@@ -37,7 +40,8 @@ idx_to_char = {i + 1: char for i, char in enumerate(vocab)}
 MAX_CAPTCHA_LEN = 7
 
 # Directory for saving examples
-ADV_EXAMPLES_DIR = "multi-label-classification/Adversarial/transferability_examples"
+ADV_EXAMPLES_DIR = "data/train_2_adversarial_examples" # change to test if you want to test on test set
+#ADV_EXAMPLES_DIR = "multi-label-classification/Adversarial/transferability_examples" # change to train if you want to test on train set
 
 # --- Helper functions ---
 def load_and_preprocess_image(image_path):
@@ -84,23 +88,27 @@ def create_fgsm_examples(model, test_files, test_dir):
     """Generate FGSM adversarial examples for each test file."""
     examples = []
     
-    for file in test_files:
-        image_path = os.path.join(test_dir, file)
-        original_image = load_and_preprocess_image(image_path)
-        original_label = extract_label_from_filename(file)
-        label_sequence = label_to_sequence(original_label)
+    for epsilon in FGSM_EPSILONS:
+        # Shuffle and select new subset for each epsilon
+        random.shuffle(test_files)
+        current_test_files = test_files[:num_samples]
         
-        # Skip files where original prediction is incorrect
-        original_img_batch = tf.expand_dims(original_image, 0)
-        original_preds = model.predict(original_img_batch, verbose=0)
-        original_pred_indices = np.argmax(original_preds, axis=-1)[0]
-        predicted_original = ''.join([idx_to_char.get(idx, '') for idx in original_pred_indices if idx != 0])
-        
-        if predicted_original != original_label:
-            print(f"Skipping {file}: original prediction incorrect")
-            continue
-        
-        for epsilon in FGSM_EPSILONS:
+        for file in current_test_files:
+            image_path = os.path.join(test_dir, file)
+            original_image = load_and_preprocess_image(image_path)
+            original_label = extract_label_from_filename(file)
+            label_sequence = label_to_sequence(original_label)
+            
+            # Skip files where original prediction is incorrect
+            original_img_batch = tf.expand_dims(original_image, 0)
+            original_preds = model.predict(original_img_batch, verbose=0)
+            original_pred_indices = np.argmax(original_preds, axis=-1)[0]
+            predicted_original = ''.join([idx_to_char.get(idx, '') for idx in original_pred_indices if idx != 0])
+            
+            if predicted_original != original_label:
+                print(f"Skipping {file}: original prediction incorrect")
+                continue
+            
             # Apply FGSM attack
             input_image = tf.convert_to_tensor(original_image)
             input_image = tf.expand_dims(input_image, 0)
@@ -175,22 +183,26 @@ def create_gaussian_noise_examples(model, test_files, test_dir):
     """Generate Gaussian noise adversarial examples for each test file."""
     examples = []
     
-    for file in test_files:
-        image_path = os.path.join(test_dir, file)
-        original_image = load_and_preprocess_image(image_path)
-        original_label = extract_label_from_filename(file)
+    for sigma in GAUSSIAN_SIGMAS:
+        # Shuffle and select new subset for each sigma
+        random.shuffle(test_files)
+        current_test_files = test_files[:num_samples]
         
-        # Skip files where original prediction is incorrect
-        original_img_batch = tf.expand_dims(original_image, 0)
-        original_preds = model.predict(original_img_batch, verbose=0)
-        original_pred_indices = np.argmax(original_preds, axis=-1)[0]
-        predicted_original = ''.join([idx_to_char.get(idx, '') for idx in original_pred_indices if idx != 0])
-        
-        if predicted_original != original_label:
-            print(f"Skipping {file}: original prediction incorrect")
-            continue
-        
-        for sigma in GAUSSIAN_SIGMAS:
+        for file in current_test_files:
+            image_path = os.path.join(test_dir, file)
+            original_image = load_and_preprocess_image(image_path)
+            original_label = extract_label_from_filename(file)
+            
+            # Skip files where original prediction is incorrect
+            original_img_batch = tf.expand_dims(original_image, 0)
+            original_preds = model.predict(original_img_batch, verbose=0)
+            original_pred_indices = np.argmax(original_preds, axis=-1)[0]
+            predicted_original = ''.join([idx_to_char.get(idx, '') for idx in original_pred_indices if idx != 0])
+            
+            if predicted_original != original_label:
+                print(f"Skipping {file}: original prediction incorrect")
+                continue
+            
             # Apply Gaussian noise
             noise = tf.random.normal(shape=original_image.shape, mean=0.0, stddev=sigma, dtype=tf.float32)
             noisy_image = original_image + noise
@@ -263,23 +275,27 @@ def create_smooth_fgsm_examples(model, test_files, test_dir):
     """Generate Smoothed FGSM adversarial examples for each test file."""
     examples = []
     
-    for file in test_files:
-        image_path = os.path.join(test_dir, file)
-        original_image = load_and_preprocess_image(image_path)
-        original_label = extract_label_from_filename(file)
-        label_sequence = label_to_sequence(original_label)
+    for sigma, epsilon in SMOOTH_FGSM_PARAMS:
+        # Shuffle and select new subset for each parameter pair
+        random.shuffle(test_files)
+        current_test_files = test_files[:num_samples]
         
-        # Skip files where original prediction is incorrect
-        original_img_batch = tf.expand_dims(original_image, 0)
-        original_preds = model.predict(original_img_batch, verbose=0)
-        original_pred_indices = np.argmax(original_preds, axis=-1)[0]
-        predicted_original = ''.join([idx_to_char.get(idx, '') for idx in original_pred_indices if idx != 0])
-        
-        if predicted_original != original_label:
-            print(f"Skipping {file}: original prediction incorrect")
-            continue
-        
-        for sigma, epsilon in SMOOTH_FGSM_PARAMS:
+        for file in current_test_files:
+            image_path = os.path.join(test_dir, file)
+            original_image = load_and_preprocess_image(image_path)
+            original_label = extract_label_from_filename(file)
+            label_sequence = label_to_sequence(original_label)
+            
+            # Skip files where original prediction is incorrect
+            original_img_batch = tf.expand_dims(original_image, 0)
+            original_preds = model.predict(original_img_batch, verbose=0)
+            original_pred_indices = np.argmax(original_preds, axis=-1)[0]
+            predicted_original = ''.join([idx_to_char.get(idx, '') for idx in original_pred_indices if idx != 0])
+            
+            if predicted_original != original_label:
+                print(f"Skipping {file}: original prediction incorrect")
+                continue
+            
             # First apply Gaussian smoothing
             smoothed_image = apply_gaussian_smoothing(original_image, sigma)
             if len(smoothed_image.shape) == 4:
@@ -386,74 +402,105 @@ def load_model_with_custom_objects(model_path):
 def create_bim_examples(model, test_files, test_dir):
     """Generate BIM (Basic Iterative Method) adversarial examples for each test file."""
     examples = []
-    
-    for file in test_files:
-        image_path = os.path.join(test_dir, file)
-        original_image = load_and_preprocess_image(image_path)
-        original_label = extract_label_from_filename(file)
-        label_sequence = label_to_sequence(original_label)
+    RANDOM_START = True  # Whether to add random noise at the beginning
+    for epsilon in BIM_EPSILONS:
+        # Shuffle and select new subset for each epsilon
+        random.shuffle(test_files)
+        current_test_files = test_files[:num_samples]
         
-        # Skip files where original prediction is incorrect
-        original_img_batch = tf.expand_dims(original_image, 0)
-        original_preds = model.predict(original_img_batch, verbose=0)
-        original_pred_indices = np.argmax(original_preds, axis=-1)[0]
-        predicted_original = ''.join([idx_to_char.get(idx, '') for idx in original_pred_indices if idx != 0])
-        
-        if predicted_original != original_label:
-            print(f"Skipping {file}: original prediction incorrect")
-            continue
-        
-        for epsilon in BIM_EPSILONS:
-            # Apply BIM attack (multiple iterations of FGSM)
-            input_image = tf.convert_to_tensor(original_image)
-            input_image = tf.expand_dims(input_image, 0)
-            input_label = tf.expand_dims(label_sequence, 0)
+        for file in current_test_files:
+            image_path = os.path.join(test_dir, file)
+            original_image = load_and_preprocess_image(image_path)
+            original_label = extract_label_from_filename(file)
+            label_sequence = label_to_sequence(original_label)
             
-            # Create a target label that's different from the input
-            target_label = tf.roll(input_label, shift=1, axis=1)  # Shift all characters by one position
+            # Skip files where original prediction is incorrect
+            original_img_batch = tf.expand_dims(original_image, 0)
+            original_preds = model.predict(original_img_batch, verbose=0)
+            original_pred_indices = np.argmax(original_preds, axis=-1)[0]
+            predicted_original = ''.join([idx_to_char.get(idx, '') for idx in original_pred_indices if idx != 0])
             
-            # Initialize adversarial example with original image
-            adv_image = tf.identity(input_image)
+            if predicted_original != original_label:
+                print(f"Skipping {file}: original prediction incorrect")
+                continue
+            
+            # Convert label to sequence and add batch dimension
+            label_sequence_batch = tf.expand_dims(label_sequence, 0)
+            
+            # Get original loss
+            prediction = model(original_img_batch)
+            original_loss = tf.keras.losses.sparse_categorical_crossentropy(
+                label_sequence_batch, prediction, from_logits=False
+            )
+            original_loss = tf.reduce_mean(original_loss)
+            
+            # Initialize adversarial example
+            if RANDOM_START:
+                # Add small random noise to start
+                random_noise = tf.random.uniform(original_img_batch.shape, -epsilon/2, epsilon/2)
+                adv_image = tf.clip_by_value(original_img_batch + random_noise, 0.0, 1.0)
+            else:
+                adv_image = tf.identity(original_img_batch)
+            
+            # Store the best adversarial example (with highest loss)
+            best_adv_image = tf.identity(adv_image)
+            best_loss = original_loss
             
             # Number of iterations for BIM
             num_iterations = BIM_ITERATIONS
             alpha = epsilon / num_iterations  # Step size
             
-            for _ in range(num_iterations):
+            # Track losses for visualization
+            losses = []
+            
+            for i in range(num_iterations):
                 with tf.GradientTape() as tape:
                     tape.watch(adv_image)
                     prediction = model(adv_image)
                     
-                    loss = 0
-                    for i in range(prediction.shape[1]):
-                        pos_pred = prediction[:, i, :]
-                        pos_target = target_label[:, i]
-                        
-                        if pos_target[0] != 0:
-                            pos_loss = tf.keras.losses.sparse_categorical_crossentropy(
-                                pos_target, pos_pred, from_logits=False
-                            )
-                            loss += pos_loss
-                    
-                    non_padding_positions = tf.reduce_sum(tf.cast(target_label != 0, tf.float32))
-                    loss = loss / (non_padding_positions + 1e-8)
+                    # Calculate loss for all character positions at once
+                    loss = tf.keras.losses.sparse_categorical_crossentropy(
+                        label_sequence_batch, prediction, from_logits=False
+                    )
+                    # Average across sequence positions
+                    loss = tf.reduce_mean(loss)
                 
                 # Get gradients
-                gradient = tape.gradient(loss, adv_image)
+                gradients = tape.gradient(loss, adv_image)
                 
-                # Update adversarial example with smaller step size
-                adv_image = adv_image + alpha * tf.sign(gradient)
+                # Update adversarial example using gradient sign (maximize loss)
+                perturbation = alpha * tf.sign(gradients)
+                adv_image = adv_image + perturbation
                 
-                # Project back to epsilon-ball around original image
-                perturbation = adv_image - input_image
-                perturbation = tf.clip_by_value(perturbation, -epsilon, epsilon)
-                adv_image = input_image + perturbation
+                # Clip the perturbation to maintain epsilon constraint
+                delta = tf.clip_by_value(adv_image - original_img_batch, -epsilon, epsilon)
+                adv_image = original_img_batch + delta
                 
-                # Ensure valid pixel range
-                adv_image = tf.clip_by_value(adv_image, 0, 1)
+                # Clip to maintain valid pixel range [0, 1]
+                adv_image = tf.clip_by_value(adv_image, 0.0, 1.0)
+                
+                # Calculate current loss
+                prediction = model(adv_image)
+                current_loss = tf.keras.losses.sparse_categorical_crossentropy(
+                    label_sequence_batch, prediction, from_logits=False
+                )
+                current_loss = tf.reduce_mean(current_loss)
+                losses.append(current_loss.numpy())
+                
+                # Track the best adversarial example
+                if current_loss > best_loss:
+                    best_adv_image = tf.identity(adv_image)
+                    best_loss = current_loss
+                
+                # Print progress
+                if (i + 1) % 10 == 0:
+                    print(f"Iteration {i + 1}/{num_iterations}: Loss = {current_loss:.4f} (Original: {original_loss:.4f})")
             
-            # Extract final adversarial example
-            adversarial_image = adv_image[0]
+            # Use the best adversarial example
+            adversarial_image = best_adv_image[0]
+            
+            # Calculate the total change in loss
+            loss_change = best_loss - original_loss
             
             # Check if attack is successful
             adv_img_batch = tf.expand_dims(adversarial_image, 0)
@@ -491,23 +538,27 @@ def create_ifgs_examples(model, test_files, test_dir):
     """Generate IFGS (Iterative Fast Gradient Sign with target confidence) examples."""
     examples = []
     
-    for file in test_files:
-        image_path = os.path.join(test_dir, file)
-        original_image = load_and_preprocess_image(image_path)
-        original_label = extract_label_from_filename(file)
-        label_sequence = label_to_sequence(original_label)
+    for confidence_target in IFGS_CONFIDENCE_TARGETS:
+        # Shuffle and select new subset for each confidence target
+        random.shuffle(test_files)
+        current_test_files = test_files[:num_samples]
         
-        # Skip files where original prediction is incorrect
-        original_img_batch = tf.expand_dims(original_image, 0)
-        original_preds = model.predict(original_img_batch, verbose=0)
-        original_pred_indices = np.argmax(original_preds, axis=-1)[0]
-        predicted_original = ''.join([idx_to_char.get(idx, '') for idx in original_pred_indices if idx != 0])
-        
-        if predicted_original != original_label:
-            print(f"Skipping {file}: original prediction incorrect")
-            continue
-        
-        for confidence_target in IFGS_CONFIDENCE_TARGETS:
+        for file in current_test_files:
+            image_path = os.path.join(test_dir, file)
+            original_image = load_and_preprocess_image(image_path)
+            original_label = extract_label_from_filename(file)
+            label_sequence = label_to_sequence(original_label)
+            
+            # Skip files where original prediction is incorrect
+            original_img_batch = tf.expand_dims(original_image, 0)
+            original_preds = model.predict(original_img_batch, verbose=0)
+            original_pred_indices = np.argmax(original_preds, axis=-1)[0]
+            predicted_original = ''.join([idx_to_char.get(idx, '') for idx in original_pred_indices if idx != 0])
+            
+            if predicted_original != original_label:
+                print(f"Skipping {file}: original prediction incorrect")
+                continue
+            
             # Apply IFGS attack with confidence target
             input_image = tf.convert_to_tensor(original_image)
             input_image = tf.expand_dims(input_image, 0)
@@ -624,17 +675,25 @@ def main():
     print(f"Loading source model: {SOURCE_MODEL_PATH}")
     model = load_model_with_custom_objects(SOURCE_MODEL_PATH)
     
-    # Test directory
-    test_dir = "data/test2"
+    # directory
+    test_dir = "data/train2"
     test_files = [f for f in os.listdir(test_dir) if f.endswith(('.png', '.jpg'))]
     print(f"Found {len(test_files)} test files")
     
     # Use a subset of test files for efficiency
     num_samples = 20
-    test_files = test_files[:num_samples]
+    # randomize the test files
+    #random.shuffle(test_files)
+    #test_files = test_files[:num_samples]
     print(f"Using {len(test_files)} test files for generating examples")
     
     all_examples = []
+
+    # Generate BIM examples
+    print("Generating BIM examples...")
+    bim_examples = create_bim_examples(model, test_files, test_dir)
+    all_examples.extend(bim_examples)
+    print(f"Created {len(bim_examples)} BIM examples")
     
     # Generate FGSM examples
     print("Generating FGSM examples...")
@@ -647,12 +706,6 @@ def main():
     gaussian_examples = create_gaussian_noise_examples(model, test_files, test_dir)
     all_examples.extend(gaussian_examples)
     print(f"Created {len(gaussian_examples)} Gaussian noise examples")
-    
-    # Generate BIM examples
-    print("Generating BIM examples...")
-    bim_examples = create_bim_examples(model, test_files, test_dir)
-    all_examples.extend(bim_examples)
-    print(f"Created {len(bim_examples)} BIM examples")
     
     # Generate IFGS examples
     print("Generating IFGS examples...")

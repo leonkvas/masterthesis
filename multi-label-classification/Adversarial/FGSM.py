@@ -9,7 +9,7 @@ import time
 # --- Parameters (must match training) ---
 IMG_SIZE = (50, 250)  # (height, width)
 BATCH_SIZE = 16
-EPSILONS = [0.1, 0.5, 1, 2]  # Increased perturbation magnitudes
+EPSILONS = [1, 2, 3]  # Increased perturbation magnitudes
 CHANNELS = 1  # Grayscale images
 
 # Vocabulary settings (same as during training)
@@ -182,7 +182,7 @@ def visualize_attack(original_image, adversarial_image, original_label,
     plt.close()
 
 
-def test_model_robustness(model, test_dir, num_samples=50):
+def test_model_robustness(model, test_dir, num_samples=5):
     """Test model robustness against FGSM attacks."""
     test_files = [f for f in os.listdir(test_dir) if f.endswith(('.png', '.jpg'))]
     test_files = test_files[:num_samples]  # Limit number of samples

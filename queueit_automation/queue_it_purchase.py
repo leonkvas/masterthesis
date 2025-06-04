@@ -343,8 +343,6 @@ class QueueItPurchase:
         if '"name":"RecaptchaInvisible' in self.resptext:
             self.captcha = True
             self.sitekey = self.re_find(self.resptext, r"captchaInvisiblePublicKey: '(.*?)'")
-            if not self.sitekey:
-                self.sitekey = "6LePTyoUAAAAADPttQg1At44EFCygqxZYzgleaKp"  # Default fallback sitekey
             self.Purchase.info(f"ReCAPTCHA Invisible detected with sitekey: {self.sitekey}")
         else:
             self.captcha = False
@@ -812,7 +810,6 @@ class QueueItPurchase:
             )
             
             self.Purchase.info(f"Submission response status: {response.status_code}")
-            self.Purchase.info(f"Submission response headers: {dict(response.headers)}")
             
             if response.status_code == 200:
                 self.Purchase.info(f"Submission response: {response.text}")
@@ -822,35 +819,18 @@ class QueueItPurchase:
                     if response_data.get("IsVerified", False) or response_data.get("isVerified", False):
                         self.Purchase.success(f"Solved Image Captcha with solution: '{response_text}'")
                         
-                        if self.softblock:
-                            # Process sessionInfo for softblock handling
-                            session_info = response_data.get("SessionInfo", response_data.get("sessionInfo", {}))
-                            
-                            # Format the session info for URL parameter WITHOUT SPACES in JSON
-                            session_info_obj = {
-                                "sessionId": session_info.get("SessionID", session_info.get("sessionId", "")),
-                                "timestamp": session_info.get("Timestamp", session_info.get("timestamp", "")),
-                                "checksum": session_info.get("Checksum", session_info.get("checksum", "")),
-                                "sourceIp": session_info.get("SourceIP", session_info.get("sourceIP", "")),
-                                "challengeType": "botdetect",
-                                "version": session_info.get("Version", session_info.get("version", 6)),
-                                "customerId": self.Customer_ID,
-                                "waitingRoomId": self.EventId
-                            }
-                            # Use separators parameter to remove spaces in JSON
-                            self.sessioninfo = json.dumps(session_info_obj, separators=(',', ':'))
-                            self.sessioninfo = urllib.parse.quote(self.sessioninfo)
-                            self.Purchase.info(f"Stored session info for softblock: {self.sessioninfo[:30]}...")
-                        
-                        self.SessionInfoIMG = self.re_find(response.text, r'"sessionInfo":{(.*?)}')
-                        
-                        # Try both camelCase and PascalCase for compatibility
-                        session_info = response_data.get("SessionInfo", response_data.get("sessionInfo", {}))
-                        self.SessionIdimgcap = session_info.get("SessionID", session_info.get("sessionId", ""))
-                        self.Timestampimgcap = session_info.get("Timestamp", session_info.get("timestamp", ""))
-                        self.checksumimgcap = session_info.get("Checksum", session_info.get("checksum", ""))
-                        self.SourceIPimgcap = session_info.get("SourceIP", session_info.get("sourceIP", ""))
-                        self.Versionimgcap = session_info.get("Version", session_info.get("version", ""))
+                        # Store the session info for later use in get_queue_id
+                        session_info = response_data.get("sessionInfo", {})
+                        self.SessionInfoIMG = {
+                            "sessionId": session_info.get("sessionId", ""),
+                            "timestamp": session_info.get("timestamp", ""),
+                            "checksum": session_info.get("checksum", ""),
+                            "sourceIp": session_info.get("sourceIp", ""),
+                            "challengeType": "botdetect",
+                            "version": session_info.get("version", 6),
+                            "customerId": self.Customer_ID,
+                            "waitingRoomId": self.EventId
+                        }
                         
                         return True, None
                     else:
@@ -1145,57 +1125,18 @@ class QueueItPurchase:
                     response_data = json.loads(response.text)
                     
                     if response_data.get("IsVerified", False) or response_data.get("isVerified", False):
-                        # Try to parse the session info from response for POW
-                        if "sessionInfo" in response.text:
-                            self.Purchase.info(f"Storing POW session info")
-                            
-                            # Prepare POW challenge session info for API calls
-                            session_info = response_data.get("sessionInfo", {})
-                            self.SessionId1 = session_info.get("sessionId", "")
-                            self.Timestamp1 = session_info.get("timestamp", "")
-                            self.checksum1 = session_info.get("checksum", "")
-                            self.SourceIP1 = session_info.get("sourceIp", "")
-                            self.Version1 = session_info.get("version", 6)
-                            
-                            # Store full session info with correct JSON formatting (no spaces)
-                            session_info_obj = {
-                                "sessionId": self.SessionId1,
-                                "timestamp": self.Timestamp1,
-                                "checksum": self.checksum1,
-                                "sourceIp": self.SourceIP1,
-                                "challengeType": "proofofwork",
-                                "version": self.Version1,
-                                "customerId": self.Customer_ID,
-                                "waitingRoomId": self.EventId
-                            }
-                            self.SessionInfoPOW = json.dumps(session_info_obj, separators=(',', ':'))
-                            self.Purchase.info(f"Stored POW session info: {self.SessionInfoPOW[:30]}...")
-                        
-                        # Try both camelCase and PascalCase for compatibility
-                        session_info = response_data.get("SessionInfo", response_data.get("sessionInfo", {}))
-                        self.SessionId2 = session_info.get("SessionID", session_info.get("sessionId", ""))
-                        self.Timestamp2 = session_info.get("Timestamp", session_info.get("timestamp", ""))
-                        self.checksum2 = session_info.get("Checksum", session_info.get("checksum", ""))
-                        self.SourceIP2 = session_info.get("SourceIP", session_info.get("sourceIP", ""))
-                        self.Version2 = session_info.get("Version", session_info.get("version", 0))
-                        
-                        if self.softblock:
-                            # Process sessionInfo for softblock handling
-                            self.Purchase.info("Storing POW session info for softblock")
-                            # Format the session info for URL parameter (without spaces in JSON)
-                            session_info_obj = {
-                                "sessionId": self.SessionId2,
-                                "timestamp": self.Timestamp2,
-                                "checksum": self.checksum2,
-                                "sourceIp": self.SourceIP2,
-                                "challengeType": "proofofwork",
-                                "version": self.Version2,
-                                "customerId": self.Customer_ID,
-                                "waitingRoomId": self.EventId
-                            }
-                            self.sessioninfo = json.dumps(session_info_obj, separators=(',', ':'))
-                            self.sessioninfo = urllib.parse.quote(self.sessioninfo)
-                            self.Purchase.info(f"Stored POW session info for softblock: {self.sessioninfo[:30]}...")
+                        # Store the session info for later use in get_queue_id
+                        session_info = response_data.get("sessionInfo", {})
+                        self.SessionInfoPOW = {
+                            "sessionId": session_info.get("sessionId", ""),
+                            "timestamp": session_info.get("timestamp", ""),
+                            "checksum": session_info.get("checksum", ""),
+                            "sourceIp": session_info.get("sourceIp", ""),
+                            "challengeType": "proofofwork",
+                            "version": session_info.get("version", 6),
+                            "customerId": self.Customer_ID,
+                            "waitingRoomId": self.EventId
+                        }
                         
                         return True, None
                     else:
@@ -1249,96 +1190,93 @@ class QueueItPurchase:
             return False
 
     def get_queue_id(self):
-        # Validate saved session info before proceeding
-        if not self.check_valid_session_info():
-            self.Purchase.error("Invalid session info for queue ID request")
-            return False, Exception("Invalid session info")
-
-        # Construct the session info query parameter
-        try:
-            # Use the properly formatted session info object that was stored
-            scv_param = self.SessionInfoPOW
-            self.Purchase.info(f"Using session info: {scv_param[:50]}...")
-        except Exception as e:
-            self.Purchase.error(f"Failed to encode session info: {str(e)}")
-            return False, Exception(f"Failed to encode session info: {str(e)}")
-
         try:
             # Prepare the request URL
-            queue_id_url = self.QueueBaseURL
+            queue_id_url = f"https://{self.Host}/spa-api/queue/{self.Customer_ID}/{self.EventId}/enqueue"
             
-            # Add all required parameters
-            params = {
-                "c": self.Customer_ID,
-                "e": self.EventId,
-                "t": self.RedirectUrl,
-                "cid": self.Cid,
-                "scv": scv_param
+            # Add culture parameter
+            if self.culture:
+                queue_id_url += f"?cid={self.culture}"
+            
+            self.Purchase.info(f"Queue ID request URL: {queue_id_url}")
+            
+            # Prepare challenge sessions array
+            challenge_sessions = []
+            
+            # Add Image Captcha session if available
+            if hasattr(self, 'SessionInfoIMG') and self.SessionInfoIMG:
+                challenge_sessions.append(self.SessionInfoIMG)
+            
+            # Add POW session if available
+            if hasattr(self, 'SessionInfoPOW') and self.SessionInfoPOW:
+                challenge_sessions.append(self.SessionInfoPOW)
+            
+            # Prepare the payload with the new format
+            payload = {
+                "challengeSessions": challenge_sessions,
+                "layoutName": self.LayoutName,
+                "customUrlParams": self.customparams,
+                "targetUrl": self.TargetUrl,
+                "Referrer": self.respurl
             }
             
-            # Add layout name if specified
-            if self.LayoutName:
-                params["l"] = self.LayoutName
-            
-            # Add custom URL parameters if specified
-            if self.CustomUrlParams:
-                for key, value in self.CustomUrlParams.items():
-                    params[key] = value
-                    
-            # Construct the request URL with proper URL encoding
-            request_url = queue_id_url + "?" + "&".join([f"{k}={requests.utils.quote(str(v))}" for k, v in params.items()])
-            
-            self.Purchase.info(f"Queue ID request URL: {request_url[:100]}...")
+            # Prepare headers
+            headers = {
+                "accept": "application/json, text/javascript, */*; q=0.01",
+                "content-type": "application/json",
+                "origin": f"https://{self.Host}",
+                "referer": self.respurl,
+                "sec-ch-ua": "\"Google Chrome\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+                "sec-ch-ua-mobile": "?0",
+                "sec-ch-ua-platform": "\"macOS\"",
+                "sec-fetch-dest": "empty",
+                "sec-fetch-mode": "cors",
+                "sec-fetch-site": "same-origin",
+                "user-agent": self.User_Agent,
+                "x-requested-with": "XMLHttpRequest",
+                "x-queueit-qpage-referral": self.respurl,
+                "priority": "u=1, i"
+            }
+        
             
             # Make the request
-            response = self.Purchase.Session.get(
-                request_url,
-                headers={
-                    "accept": "text/html,application/xhtml+xml,application/xml",
-                    "user-agent": self.User_Agent,
-                    "referer": self.respurl
-                },
-                allow_redirects=True
+            response = self.Purchase.Session.post(
+                queue_id_url,
+                json=payload,
+                headers=headers
             )
             
             self.Purchase.info(f"Queue ID response status: {response.status_code}")
             
-            # Check if we were redirected to the queue
-            if "queue-it.net" in response.url:
-                self.Purchase.info(f"Redirected to queue: {response.url}")
-                
-                # Extract the queue ID from the URL
-                self.QueueID = self.re_find(response.url, r'q=([^&]+)')
-                
-                if self.QueueID:
-                    self.Purchase.success(f"Extracted Queue ID from redirect URL: {self.QueueID}")
+            if response.status_code == 200:
+                try:
+                    response_data = json.loads(response.text)
                     
-                    # Generate unique session values
-                    self.Seid = str(uuid.uuid4())
-                    self.Sets = str(int(time.time() * 1000))  # Current time in milliseconds
-                    
-                    return True, None
-                else:
-                    self.Purchase.error("Failed to extract Queue ID from redirect URL")
-                    self.Purchase.debug(f"Response URL: {response.url}")
-                    return False, Exception("Failed to extract Queue ID")
-            
-            # Check if we were redirected to the target URL (no queue needed)
-            elif self.TargetUrl and self.TargetUrl in response.url:
-                self.Purchase.success("Redirected directly to target URL, no queue needed")
-                return True, None
-            
-            # Otherwise, we might still be on the softblock page or an error occurred
+                    # Extract queue ID from response
+                    if "queueId" in response_data:
+                        self.QueueID = response_data["queueId"]
+                        self.Purchase.success(f"Successfully obtained Queue ID: {self.QueueID}")
+                        
+                        # Generate unique session values
+                        self.Seid = str(uuid.uuid4())
+                        self.Sets = str(int(time.time() * 1000))  # Current time in milliseconds
+                        
+                        return True, None
+                    else:
+                        self.Purchase.error("Queue ID not found in response")
+                        self.Purchase.debug(f"Response: {response.text[:200]}...")
+                        return False, Exception("Queue ID not found in response")
+                except json.JSONDecodeError:
+                    self.Purchase.error("Failed to parse queue ID response")
+                    self.Purchase.debug(f"Response: {response.text[:200]}...")
+                    return False, Exception("Failed to parse queue ID response")
+            elif response.status_code == 429:
+                self.Purchase.error("Rate limited while getting queue ID")
+                return False, Exception("Rate limited")
             else:
-                self.Purchase.error(f"Unexpected redirect: {response.url}")
-                self.Purchase.debug(f"Response content: {response.text[:200]}...")
-                
-                # Check if we're still on the softblock page
-                if "softblock" in response.url:
-                    self.Purchase.error("Still on softblock page, need to solve another challenge")
-                    return False, Exception("Still on softblock page")
-                
-                return False, Exception(f"Unexpected redirect: {response.url}")
+                self.Purchase.error(f"Failed to get queue ID - Status code: {response.status_code}")
+                self.Purchase.debug(f"Response: {response.text[:200]}...")
+                return False, Exception(f"Failed to get queue ID - Status code: {response.status_code}")
                 
         except Exception as e:
             self.Purchase.error(f"Exception in get_queue_id: {str(e)}")
@@ -1358,7 +1296,7 @@ class QueueItPurchase:
             "layoutVersion": self.LayoutVersion,
             "layoutName": self.LayoutName,
             "isClientRedayToRedirect": True,
-            "isBeforeOrIdle": self.beforeoridle
+            "isBeforeOrIdle": False
         }
         
         headers = {
@@ -1411,41 +1349,10 @@ class QueueItPurchase:
                     self.Purchase.success("Passed maintenance Queue. Going to real Queue.")
                     return True, None
                 
-                # Extract cookies for the extension checkout
-                url_parsed = urllib.parse.urlparse(f"https://{self.Host}")
-                cookies = []
-                
-                for cookie in self.Purchase.Session.Client.jar.cookies(url_parsed):
-                    domain = cookie.domain
-                    
-                    if "prodirectsoccer" in self.Host:
-                        domain = ".prodirectsoccer.com"
-                    elif "ticketmaster" in self.Host:
-                        if "queue" in self.Host:
-                            domain = domain.replace("queue", "")
-                    
-                    cookies.append({
-                        "name": cookie.name,
-                        "value": cookie.value,
-                        "domain": domain
-                    })
-                
-                # Handle the extension checkout
-                try:
-                    err = self.Purchase.extension_checkout(link, cookies, "", True)
-                    if err:
-                        return False, err
-                except Exception as e:
-                    return False, e
-                
                 # Track successful checkouts
-                if "ticket" in self.Purchase.Site or "eventim" in self.Purchase.Site:
-                    self.Purchase.success("Successfully passed Queue! Check SUCCESSFULCHECKOUTS.CSV to complete your Payment.")
-                    self.Purchase.track_checkouts()
-                else:
-                    self.Purchase.success("Successfully passed Queue! Check Webhook to complete your Payment.")
-                    self.Purchase.track_checkouts()
-                
+                self.Purchase.success("Successfully passed Queue!.")
+                self.Purchase.track_checkouts()
+               
                 return True, None
             
             # Normal queue status handling
@@ -1469,10 +1376,10 @@ class QueueItPurchase:
                         time.sleep(3)
                 else:
                     # Get ticket details
-                    ticket = queue_resp.get("Ticket", {})
-                    queue_number = ticket.get("QueueNumber")
-                    users_ahead = ticket.get("UsersInLineAheadOfYou")
-                    progress = ticket.get("Progress")
+                    ticket = queue_resp.get("ticket", {})
+                    queue_number = ticket.get("queueNumber")
+                    users_ahead = ticket.get("usersInLineAheadOfYou")
+                    progress = ticket.get("progress")
                     
                     # Check for error conditions
                     if queue_number is None and users_ahead is None and progress is None:
@@ -1485,7 +1392,7 @@ class QueueItPurchase:
                             self.Purchase.info("Event ended! Task terminating.")
                             time.sleep(9 * 60 * 60)
                         else:
-                            self.Purchase.error(f"unknown response detected. Check the following output and dm it @leonswoosh: {response.text}")
+                            self.Purchase.error(f"unknown response detected: {response.text}")
                         
                         return False, None
                     
@@ -1493,38 +1400,6 @@ class QueueItPurchase:
                     formatted_queue_number = queue_number
                     if queue_number is None:
                         formatted_queue_number = "-"
-                    
-                    # Check size limits
-                    if users_ahead is not None and users_ahead != 0:
-                        if hasattr(self.Purchase, 'Size') and self.Purchase.Size != self.Purchase.CurrentCsvLine.get("SIZE", "") and self.Purchase.Size:
-                            self.Purchase.success("SIZE column (max QueueNumber) changed.")
-                        
-                        self.Purchase.Size = self.Purchase.CurrentCsvLine.get("SIZE", "")
-                        
-                        try:
-                            task_cap = int(self.Purchase.Size)
-                            users_ahead_int = int(users_ahead)
-                            
-                            if task_cap < users_ahead_int:
-                                self.Purchase.interaction(f"Users ahead: {users_ahead}. Your SIZE Column: {self.Purchase.Size}. Terminating Task!")
-                                time.sleep(9 * 60 * 60)
-                        except (ValueError, TypeError):
-                            pass
-                    elif formatted_queue_number is not None and "calculating" not in str(formatted_queue_number):
-                        if hasattr(self.Purchase, 'Size') and self.Purchase.Size != self.Purchase.CurrentCsvLine.get("SIZE", ""):
-                            self.Purchase.success("SIZE column (max QueueNumber) changed.")
-                        
-                        self.Purchase.Size = self.Purchase.CurrentCsvLine.get("SIZE", "")
-                        
-                        try:
-                            task_cap = int(self.Purchase.Size)
-                            queue_number_int = int(formatted_queue_number)
-                            
-                            if task_cap < queue_number_int:
-                                self.Purchase.interaction(f"Queue Number: {formatted_queue_number}. Your SIZE Column: {self.Purchase.Size}. Terminating Task due to your limit!")
-                                time.sleep(9 * 60 * 60)
-                        except (ValueError, TypeError):
-                            pass
                     
                     # Queue paused case
                     if ticket.get("QueuePaused", False):
@@ -1647,11 +1522,6 @@ class QueueItPurchase:
             if "c=" in response.url:
                 self.resptext = response.text
                 
-                # Special case for prodirectsoccer.com in experimental mode
-                if "prodirectsoccer.com" in response.url and hasattr(self.Purchase, 'Mode') and self.Purchase.Mode.lower() == "experimental":
-                    self.Purchase.Url = self.Purchase.Url.replace("queue.prodirectsoccer.com", "prodirect.queue-it.net")
-                    return False, None
-                
                 self.respstatcode = str(response.status_code)
                 self.QueueItEnabled = True
                 
@@ -1729,7 +1599,7 @@ class QueueItPurchase:
                         self.Purchase.interaction("Solving Queue-It")
                         self.solve_queue_it()
                         
-                        # Construct the new URL exactly like in the Go code
+                        # Construct the new UR
                         new_url = f"https://footlocker.queue-it.net/?c=footlocker&e=cxcdtest02&t=https%3A%2F%2Fwww.footlocker.com%2Fsearch%3Fquery%3D6H053P85&cid=de-DE&scv={self.sessioninfo}"
                         self.Purchase.info(f"Redirecting to queue with session token: {new_url}")
                         
