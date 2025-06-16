@@ -412,14 +412,14 @@ def run_queue_task(task_id, target_url):
         purchase = Purchase(target_url, task_nr=task_id)
         
         # Set site property for checkout handling
-        purchase.Site = "ticketmasteritaly"
+        purchase.Site = "footlocker"
         
         # Create a QueueItPurchase instance
         queue_it = QueueItPurchase(purchase)
         
         # Set the customer ID and event ID for proper detection
-        queue_it.Customer_ID = "ticketmasteritaly"
-        queue_it.EventId = "drmc20250829"
+        queue_it.Customer_ID = "footlocker"
+        queue_it.EventId = "cxcdtest02"
         
         # Call buy instead of get_queue to handle softblocks properly
         print_queue.put(f"[TASK {task_id}] Making initial request and handling any softblocks...")
@@ -474,7 +474,7 @@ def main():
     create_empty_proxies_file()
     
     # Footlocker Queue-it URL
-    target_url = "https://queueshop.ticketmaster.it/?c=ticketmasteritaly&e=drmc20250829"
+    target_url = "https://footlocker.queue-it.net/?c=footlocker&e=cxcdtest02"
     
     print(f"Starting Queue-it automation with multiple threads for: {target_url}")
     
@@ -483,7 +483,7 @@ def main():
     print_thread.start()
     
     # Number of concurrent tasks
-    num_tasks = 10
+    num_tasks = 1000
     
     # Create a thread pool
     with ThreadPoolExecutor(max_workers=num_tasks) as executor:

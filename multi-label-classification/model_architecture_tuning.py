@@ -90,7 +90,7 @@ def create_datasets():
 
 # --- Model Architectures (Progressively Adding Complexity) ---
 
-# Model 1: Baseline - Simple CNN similar to original
+# Model 1: Baseline - Simple CNN
 def create_model_baseline(input_shape=IMG_SIZE + (1,), max_len=max_captcha_len, vocab_size=vocab_size):
     inputs = tf.keras.Input(shape=input_shape)
     
@@ -345,6 +345,41 @@ model_configs = [
     }
 ]
 
+# Add after the model_configs list and before the train_and_evaluate_model function
+
+def plot_model_architecture(model_fn, model_name, save_dir="saved_models_32_50epochsNew/architectures"):
+    """
+    Plot and save the architecture of a model without training it
+    
+    Args:
+        model_fn: Function that creates the model
+        model_name: Name of the model
+        save_dir: Directory to save the architecture plots
+    """
+    # Create save directory if it doesn't exist
+    os.makedirs(save_dir, exist_ok=True)
+    
+    # Create the model
+    model = model_fn()
+    
+    # Plot the model architecture
+    plt.figure(figsize=(20, 10))
+    tf.keras.utils.plot_model(
+        model,
+        to_file=os.path.join(save_dir, f"{model_name.replace(' ', '_').lower()}_architecture.png"),
+        show_shapes=True,
+        show_layer_names=True,
+        rankdir='TB',
+        expand_nested=True,
+        dpi=300
+    )
+    plt.close()
+    
+    # Print model summary
+    model.summary()
+    
+    return model.count_params()
+
 # --- Training and Evaluation Function ---
 def train_and_evaluate_model(model_fn, model_name, train_ds, val_ds):
     print(f"\n=== Training Model: {model_name} ===\n")
@@ -410,136 +445,165 @@ def train_and_evaluate_model(model_fn, model_name, train_ds, val_ds):
 
 # --- Main Execution ---
 if __name__ == "__main__":
-    # Create datasets
-    train_ds, val_ds = create_datasets()
+    # Flag to control whether to train models or just plot architectures
+    PLOT_ONLY_ARCHITECTURES = True
     
-    # Results storage
-    all_results = []
-    histories = {}
-    
-    # Train and evaluate each model
-    for config in model_configs:
-        model_name = config["name"]
-        model_fn = config["function"]
-        description = config["description"]
+    if PLOT_ONLY_ARCHITECTURES:
+        print("\n=== Plotting Model Architectures Only ===\n")
         
-        print(f"\n{'='*50}")
-        print(f"Starting evaluation of model: {model_name}")
-        print(f"Description: {description}")
-        print(f"{'='*50}\n")
+        # Create save directory
+        save_dir = "saved_models_32_50epochsNew/architectures"
+        os.makedirs(save_dir, exist_ok=True)
         
-        # Train and evaluate
-        results, history = train_and_evaluate_model(model_fn, model_name, train_ds, val_ds)
-        all_results.append(results)
-        histories[model_name] = history
+        # Plot each model architecture
+        for config in model_configs:
+            model_name = config["name"]
+            model_fn = config["function"]
+            description = config["description"]
+            
+            print(f"\n{'='*50}")
+            print(f"Plotting architecture for model: {model_name}")
+            print(f"Description: {description}")
+            print(f"{'='*50}\n")
+            
+            # Plot the architecture
+            params = plot_model_architecture(model_fn, model_name, save_dir)
+            print(f"Model Parameters: {params:,}")
+            
+        print(f"\nAll architecture plots saved to {save_dir}/")
         
-        # Print results
-        print(f"\nResults for {model_name}:")
-        print(f"Validation Loss: {results['Validation Loss']:.4f}")
-        print(f"Validation Accuracy: {results['Validation Accuracy']:.4f}")
-        print(f"Full Sequence Accuracy: {results['Full Sequence Accuracy']:.4f}")
-        print(f"Best Full Sequence Accuracy: {results['Best Sequence Accuracy']:.4f} at epoch {results['Best Epoch']}")
-        print(f"Model Parameters: {results['Parameters']:,}")
-        print(f"Training Time: {results['Training Time (s)']:.2f} seconds")
-    
-    # Create results DataFrame and save to CSV
-    results_df = pd.DataFrame(all_results)
-    results_df.to_csv("saved_models_32_50epochsNew/architecture_tuning_results.csv", index=False)
-    print("\nAll results saved to architecture_tuning_results.csv")
-    
-    # Plot comparison of results
-    plt.figure(figsize=(14, 8))
-    
-    # Plot sequence accuracy
-    plt.subplot(1, 2, 1)
-    plt.bar(results_df['Model Name'], results_df['Full Sequence Accuracy'], color='skyblue')
-    plt.title('Full Sequence Accuracy Comparison')
-    plt.ylabel('Accuracy')
-    plt.xticks(rotation=45, ha='right')
-    plt.ylim(0, 1)
-    
-    # Plot parameter count
-    plt.subplot(1, 2, 2)
-    plt.bar(results_df['Model Name'], results_df['Parameters'] / 1000000, color='orange')
-    plt.title('Model Size (Millions of Parameters)')
-    plt.ylabel('Parameters (Millions)')
-    plt.xticks(rotation=45, ha='right')
-    
-    plt.tight_layout()
-    plt.savefig("saved_models_32_50epochsNew/architecture_comparison.png")
-    plt.close()
-    
-    # Plot training histories for last 3 models
-    plt.figure(figsize=(15, 15))
-    
-    # Define colors for the last 3 models
-    model_colors = {
-        "Double Conv Layers": "#1f77b4",  # Blue
-        "With Residual Connection": "#ff7f0e",  # Orange
-        "Enhanced Augmentation": "#2ca02c"  # Green
-    }
-    
-    # Plot sequence accuracy histories
-    plt.subplot(3, 1, 1)
-    for model_name in list(histories.keys())[-3:]:  # Only last 3 models
-        color = model_colors[model_name]
-        plt.plot(histories[model_name].history['full_sequence_accuracy'], 
-                label=f'{model_name} (Train)', 
-                linestyle='--', 
-                color=color)
-        plt.plot(histories[model_name].history['val_full_sequence_accuracy'], 
-                label=f'{model_name} (Val)', 
-                linestyle='-', 
-                color=color)
-    
-    plt.title('Sequence Accuracy During Training', fontsize=12, pad=10)
-    plt.ylabel('Accuracy', fontsize=10)
-    plt.xlabel('Epoch', fontsize=10)
-    plt.legend(loc='lower right')
-    plt.grid(True, alpha=0.3)
-    plt.ylim(0, 1)
-    
-    # Plot character accuracy histories
-    plt.subplot(3, 1, 2)
-    for model_name in list(histories.keys())[-3:]:  # Only last 3 models
-        color = model_colors[model_name]
-        plt.plot(histories[model_name].history['accuracy'], 
-                label=f'{model_name} (Train)', 
-                linestyle='--', 
-                color=color)
-        plt.plot(histories[model_name].history['val_accuracy'], 
-                label=f'{model_name} (Val)', 
-                linestyle='-', 
-                color=color)
-    
-    plt.title('Character Accuracy During Training', fontsize=12, pad=10)
-    plt.ylabel('Accuracy', fontsize=10)
-    plt.xlabel('Epoch', fontsize=10)
-    plt.legend(loc='lower right')
-    plt.grid(True, alpha=0.3)
-    plt.ylim(0, 1)
-    
-    # Plot loss histories
-    plt.subplot(3, 1, 3)
-    for model_name in list(histories.keys())[-3:]:  # Only last 3 models
-        color = model_colors[model_name]
-        plt.plot(histories[model_name].history['loss'], 
-                label=f'{model_name} (Train)', 
-                linestyle='--', 
-                color=color)
-        plt.plot(histories[model_name].history['val_loss'], 
-                label=f'{model_name} (Val)', 
-                linestyle='-', 
-                color=color)
-    
-    plt.title('Loss During Training', fontsize=12, pad=10)
-    plt.ylabel('Loss', fontsize=10)
-    plt.xlabel('Epoch', fontsize=10)
-    plt.legend(loc='upper right')
-    plt.grid(True, alpha=0.3)
-    
-    plt.tight_layout()
-    plt.savefig("saved_models_32_50epochsNew/training_histories.png", dpi=300)
-    plt.close()
-    
-    print("\nResults visualization saved as architecture_comparison.png and training_histories.png") 
+    else:
+        # Original training code
+        # Create datasets
+        train_ds, val_ds = create_datasets()
+        
+        # Results storage
+        all_results = []
+        histories = {}
+        
+        # Train and evaluate each model
+        for config in model_configs:
+            model_name = config["name"]
+            model_fn = config["function"]
+            description = config["description"]
+            
+            print(f"\n{'='*50}")
+            print(f"Starting evaluation of model: {model_name}")
+            print(f"Description: {description}")
+            print(f"{'='*50}\n")
+            
+            # Train and evaluate
+            results, history = train_and_evaluate_model(model_fn, model_name, train_ds, val_ds)
+            all_results.append(results)
+            histories[model_name] = history
+            
+            # Print results
+            print(f"\nResults for {model_name}:")
+            print(f"Validation Loss: {results['Validation Loss']:.4f}")
+            print(f"Validation Accuracy: {results['Validation Accuracy']:.4f}")
+            print(f"Full Sequence Accuracy: {results['Full Sequence Accuracy']:.4f}")
+            print(f"Best Full Sequence Accuracy: {results['Best Sequence Accuracy']:.4f} at epoch {results['Best Epoch']}")
+            print(f"Model Parameters: {results['Parameters']:,}")
+            print(f"Training Time: {results['Training Time (s)']:.2f} seconds")
+        
+        # Create results DataFrame and save to CSV
+        results_df = pd.DataFrame(all_results)
+        results_df.to_csv("saved_models_32_50epochsNew/architecture_tuning_results.csv", index=False)
+        print("\nAll results saved to architecture_tuning_results.csv")
+        
+        # Plot comparison of results
+        plt.figure(figsize=(14, 8))
+        
+        # Plot sequence accuracy
+        plt.subplot(1, 2, 1)
+        plt.bar(results_df['Model Name'], results_df['Full Sequence Accuracy'], color='skyblue')
+        plt.title('Full Sequence Accuracy Comparison')
+        plt.ylabel('Accuracy')
+        plt.xticks(rotation=45, ha='right')
+        plt.ylim(0, 1)
+        
+        # Plot parameter count
+        plt.subplot(1, 2, 2)
+        plt.bar(results_df['Model Name'], results_df['Parameters'] / 1000000, color='orange')
+        plt.title('Model Size (Millions of Parameters)')
+        plt.ylabel('Parameters (Millions)')
+        plt.xticks(rotation=45, ha='right')
+        
+        plt.tight_layout()
+        plt.savefig("saved_models_32_50epochsNew/architecture_comparison.png")
+        plt.close()
+        
+        # Plot training histories for last 3 models
+        plt.figure(figsize=(15, 15))
+        
+        # Define colors for the last 3 models
+        model_colors = {
+            "Double Conv Layers": "#1f77b4",  # Blue
+            "With Residual Connection": "#ff7f0e",  # Orange
+            "Enhanced Augmentation": "#2ca02c"  # Green
+        }
+        
+        # Plot sequence accuracy histories
+        plt.subplot(3, 1, 1)
+        for model_name in list(histories.keys())[-3:]:  # Only last 3 models
+            color = model_colors[model_name]
+            plt.plot(histories[model_name].history['full_sequence_accuracy'], 
+                    label=f'{model_name} (Train)', 
+                    linestyle='--', 
+                    color=color)
+            plt.plot(histories[model_name].history['val_full_sequence_accuracy'], 
+                    label=f'{model_name} (Val)', 
+                    linestyle='-', 
+                    color=color)
+        
+        plt.title('Sequence Accuracy During Training', fontsize=12, pad=10)
+        plt.ylabel('Accuracy', fontsize=10)
+        plt.xlabel('Epoch', fontsize=10)
+        plt.legend(loc='lower right')
+        plt.grid(True, alpha=0.3)
+        plt.ylim(0, 1)
+        
+        # Plot character accuracy histories
+        plt.subplot(3, 1, 2)
+        for model_name in list(histories.keys())[-3:]:  # Only last 3 models
+            color = model_colors[model_name]
+            plt.plot(histories[model_name].history['accuracy'], 
+                    label=f'{model_name} (Train)', 
+                    linestyle='--', 
+                    color=color)
+            plt.plot(histories[model_name].history['val_accuracy'], 
+                    label=f'{model_name} (Val)', 
+                    linestyle='-', 
+                    color=color)
+        
+        plt.title('Character Accuracy During Training', fontsize=12, pad=10)
+        plt.ylabel('Accuracy', fontsize=10)
+        plt.xlabel('Epoch', fontsize=10)
+        plt.legend(loc='lower right')
+        plt.grid(True, alpha=0.3)
+        plt.ylim(0, 1)
+        
+        # Plot loss histories
+        plt.subplot(3, 1, 3)
+        for model_name in list(histories.keys())[-3:]:  # Only last 3 models
+            color = model_colors[model_name]
+            plt.plot(histories[model_name].history['loss'], 
+                    label=f'{model_name} (Train)', 
+                    linestyle='--', 
+                    color=color)
+            plt.plot(histories[model_name].history['val_loss'], 
+                    label=f'{model_name} (Val)', 
+                    linestyle='-', 
+                    color=color)
+        
+        plt.title('Loss During Training', fontsize=12, pad=10)
+        plt.ylabel('Loss', fontsize=10)
+        plt.xlabel('Epoch', fontsize=10)
+        plt.legend(loc='upper right')
+        plt.grid(True, alpha=0.3)
+        
+        plt.tight_layout()
+        plt.savefig("saved_models_32_50epochsNew/training_histories.png", dpi=300)
+        plt.close()
+        
+        print("\nResults visualization saved as architecture_comparison.png and training_histories.png") 

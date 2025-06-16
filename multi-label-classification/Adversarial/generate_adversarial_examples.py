@@ -15,7 +15,7 @@ BATCH_SIZE = 16
 CHANNELS = 1  # Grayscale images
 
 # Attack parameters
-FGSM_EPSILONS = [1, 2, 3]
+FGSM_EPSILONS = [0.05, 0.1, 0.15]
 GAUSSIAN_SIGMAS = [0.1, 0.2, 0.25]
 IFGS_CONFIDENCE_TARGETS = [0.7, 0.8, 0.9]
 BIM_EPSILONS = [0.1, 0.2, 0.5]
@@ -41,7 +41,7 @@ MAX_CAPTCHA_LEN = 7
 
 # Directory for saving examples
 ADV_EXAMPLES_DIR = "data/train_2_adversarial_examples" # change to test if you want to test on test set
-#ADV_EXAMPLES_DIR = "multi-label-classification/Adversarial/transferability_examples" # change to train if you want to test on train set
+ADV_EXAMPLES_DIR = "multi-label-classification/Adversarial/transferability_examples" # change to train if you want to test on train set
 
 # --- Helper functions ---
 def load_and_preprocess_image(image_path):
@@ -89,7 +89,6 @@ def create_fgsm_examples(model, test_files, test_dir):
     examples = []
     
     for epsilon in FGSM_EPSILONS:
-        # Shuffle and select new subset for each epsilon
         random.shuffle(test_files)
         current_test_files = test_files[:num_samples]
         
@@ -109,44 +108,29 @@ def create_fgsm_examples(model, test_files, test_dir):
                 print(f"Skipping {file}: original prediction incorrect")
                 continue
             
-            # Apply FGSM attack
+            # FGSM: single gradient step w.r.t. true label
             input_image = tf.convert_to_tensor(original_image)
             input_image = tf.expand_dims(input_image, 0)
             input_label = tf.expand_dims(label_sequence, 0)
             
-            target_label = tf.roll(input_label, shift=1, axis=1)  # Shift all characters by one position
-            adv_image = tf.identity(input_image)
-            
-            # PGD parameters for FGSM
-            num_steps = 10
-            alpha = 0.01
-            
-            for _ in range(num_steps):
-                with tf.GradientTape() as tape:
-                    tape.watch(adv_image)
-                    prediction = model(adv_image)
-                    
-                    loss = 0
-                    for i in range(prediction.shape[1]):
-                        pos_pred = prediction[:, i, :]
-                        pos_target = target_label[:, i]
-                        
-                        if pos_target[0] != 0:
-                            pos_loss = tf.keras.losses.sparse_categorical_crossentropy(
-                                pos_target, pos_pred, from_logits=False
-                            )
-                            loss += pos_loss
-                    
-                    non_padding_positions = tf.reduce_sum(tf.cast(target_label != 0, tf.float32))
-                    loss = loss / (non_padding_positions + 1e-8)
-                
-                gradient = tape.gradient(loss, adv_image)
-                adv_image = adv_image + alpha * tf.sign(gradient)
-                adv_image = tf.clip_by_value(adv_image, 0, 1)
-            
-            perturbation = adv_image - input_image
-            adversarial_image = original_image + epsilon * perturbation[0]
-            adversarial_image = tf.clip_by_value(adversarial_image, 0, 1)
+            with tf.GradientTape() as tape:
+                tape.watch(input_image)
+                prediction = model(input_image)
+                loss = 0
+                for i in range(prediction.shape[1]):
+                    pos_pred = prediction[:, i, :]
+                    pos_target = input_label[:, i]
+                    if pos_target[0] != 0:
+                        pos_loss = tf.keras.losses.sparse_categorical_crossentropy(
+                            pos_target, pos_pred, from_logits=False
+                        )
+                        loss += pos_loss
+                non_padding_positions = tf.reduce_sum(tf.cast(input_label != 0, tf.float32))
+                loss = loss / (non_padding_positions + 1e-8)
+            gradient = tape.gradient(loss, input_image)
+            adv_image = input_image + epsilon * tf.sign(gradient)
+            adv_image = tf.clip_by_value(adv_image, 0, 1)
+            adversarial_image = adv_image[0]  # Remove batch dimension
             
             # Check if attack is successful
             adv_img_batch = tf.expand_dims(adversarial_image, 0)
@@ -157,7 +141,7 @@ def create_fgsm_examples(model, test_files, test_dir):
             success = predicted_adv != original_label
             
             # Save the adversarial example
-            example_id = f"{file.split('.')[0]}_fgsm_eps{epsilon:.1f}"
+            example_id = f"{file.split('.')[0]}_fgsm_eps{epsilon:.2f}"
             save_dir = os.path.join(ADV_EXAMPLES_DIR, "fgsm", f"epsilon_{epsilon}")
             os.makedirs(save_dir, exist_ok=True)
             
@@ -676,7 +660,7 @@ def main():
     model = load_model_with_custom_objects(SOURCE_MODEL_PATH)
     
     # directory
-    test_dir = "data/train2"
+    test_dir = "data/test2"
     test_files = [f for f in os.listdir(test_dir) if f.endswith(('.png', '.jpg'))]
     print(f"Found {len(test_files)} test files")
     

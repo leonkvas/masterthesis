@@ -1,18 +1,18 @@
 attack_method,attack_parameter,total_examples,successful_attacks,success_rate
-fgsm,epsilon=1,42,16,38.10%
-fgsm,epsilon=2,37,20,54.05%
-fgsm,epsilon=3,38,29,76.32%
-gaussian,sigma=0.1,41,12,29.27%
-gaussian,sigma=0.2,37,37,100.00%
-gaussian,sigma=0.25,41,41,100.00%
-bim,epsilon=0.1,37,37,100.00%
-bim,epsilon=0.2,35,35,100.00%
-bim,epsilon=0.5,38,38,100.00%
-ifgs,confidence=0.7,43,43,100.00%
-ifgs,confidence=0.8,40,40,100.00%
-ifgs,confidence=0.9,40,40,100.00%
-smooth_fgsm,"sigma=0.5, epsilon=1.0",40,13,32.50%
-smooth_fgsm,"sigma=0.5, epsilon=2.0",41,28,68.29%
-smooth_fgsm,"sigma=1.0, epsilon=2.0",44,36,81.82%
-smooth_fgsm,"sigma=1.5, epsilon=2.0",39,23,58.97%
-smooth_fgsm,"sigma=2.0, epsilon=2.0",36,18,50.00%
+fgsm,epsilon=0.05,40,39,97.50%
+fgsm,epsilon=0.1,42,42,100.00%
+fgsm,epsilon=0.15,41,41,100.00%
+gaussian,sigma=0.1,38,12,31.58%
+gaussian,sigma=0.2,38,38,100.00%
+gaussian,sigma=0.25,36,36,100.00%
+bim,epsilon=0.1,42,42,100.00%
+bim,epsilon=0.2,37,37,100.00%
+bim,epsilon=0.5,37,37,100.00%
+ifgs,confidence=0.7,42,42,100.00%
+ifgs,confidence=0.8,37,37,100.00%
+ifgs,confidence=0.9,42,42,100.00%
+smooth_fgsm,"sigma=0.5, epsilon=1.0",44,13,29.55%
+smooth_fgsm,"sigma=0.5, epsilon=2.0",41,30,73.17%
+smooth_fgsm,"sigma=1.0, epsilon=2.0",38,31,81.58%
+smooth_fgsm,"sigma=1.5, epsilon=2.0",39,21,53.85%
+smooth_fgsm,"sigma=2.0, epsilon=2.0",45,23,51.11%

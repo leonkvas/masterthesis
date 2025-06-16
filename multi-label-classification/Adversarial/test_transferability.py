@@ -25,10 +25,6 @@ TARGET_MODEL_PATHS = [
     "best_robust_model2.keras",
     "best_robust_augmented_model.keras",
     "best_robust_augmented_model2.keras",
-    #"multi-label-classification/Adversarial/preprocessing_results/bit_depth_reduction_20250522_125053/bitdepth.keras",
-    #"multi-label-classification/Adversarial/preprocessing_results/gaussian_smoothing_20250522_134609/gaussiansmoothing.keras",
-    #"multi-label-classification/Adversarial/preprocessing_results/tv_minimization_20250522_123827/tvminim.keras",
-    #"multi-label-classification/Adversarial/preprocessing_results/two_step_20250522_130209/twostep.keras"
 ]
 
 # Adversarial examples directory

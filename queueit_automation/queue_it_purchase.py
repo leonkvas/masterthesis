@@ -7,6 +7,7 @@ import hashlib
 import urllib.parse
 import requests
 import numpy as np
+import sys
 import io
 from typing import List, Dict, Union, Any, Optional, Tuple
 
@@ -440,6 +441,8 @@ class QueueItPurchase:
             if self.Recapcaptcha:
                 print("Recap captcha detected, NOT IMPLEMENTED YET")
                 return False, Exception("Recap captcha detected, NOT IMPLEMENTED YET")
+            
+            self.imgcaptcha = True
             if self.imgcaptcha:
                 self.Purchase.info("Image captcha detected, starting solving process")
                 
@@ -487,10 +490,20 @@ class QueueItPurchase:
                     # This only executes if the for loop completes without a break
                     self.Purchase.error("Failed to solve image captcha after maximum attempts")
                     return False, Exception("Failed after maximum retry attempts")
-                
+
+            sys.exit(0)  
             if self.captcha:
                 print("Recap V3 Captcha detected, NOT IMPLEMENTED YET")
                 return False, Exception("Recap V3 Captcha detected, NOT IMPLEMENTED YET")
+
+            if self.pow:
+                self.get_pow_challenge()
+                solutions, err = self.solve_pow_challenge(self.Input, self.Complexity, self.Runs)
+                if err:
+                    self.Purchase.error("Error solving POW. Terminating Task.")
+                    time.sleep(9 * 60 * 60)
+                self.Solution = solutions
+                self.submit_pow_solution()
 
             # After solving all challenges, get a queue ID
             if (self.pow or self.imgcaptcha or self.captcha or self.Recapcaptcha) and not self.softblock:

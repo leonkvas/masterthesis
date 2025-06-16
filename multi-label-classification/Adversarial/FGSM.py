@@ -9,7 +9,7 @@ import time
 # --- Parameters (must match training) ---
 IMG_SIZE = (50, 250)  # (height, width)
 BATCH_SIZE = 16
-EPSILONS = [1, 2, 3]  # Increased perturbation magnitudes
+EPSILONS = [0.05, 0.1, 0.15]  # Increased perturbation magnitudes
 CHANNELS = 1  # Grayscale images
 
 # Vocabulary settings (same as during training)
@@ -17,7 +17,7 @@ vocab = list("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 vocab_size = len(vocab) + 1  # +1 for padding (index 0)
 char_to_idx = {char: i + 1 for i, char in enumerate(vocab)}
 idx_to_char = {i + 1: char for i, char in enumerate(vocab)}
-# If your model was trained with a specific fixed max captcha length:
+# If model was trained with a specific fixed max captcha length:
 MAX_CAPTCHA_LEN = 7  # adjust as per your training configuration
 
 
@@ -52,56 +52,34 @@ def label_to_sequence(label_str, max_len=MAX_CAPTCHA_LEN):
     return np.array(seq_padded, dtype=np.int32)
 
 
-def create_adversarial_pattern(input_image, input_label, model):
-    """Create adversarial pattern using PGD."""
+def create_adversarial_pattern(input_image, input_label, model, epsilon):
+    """Create adversarial pattern using single-step FGSM."""
     input_image = tf.convert_to_tensor(input_image)
     input_image = tf.expand_dims(input_image, 0)  # Add batch dimension
-    
-    # Expand label to match model output shape
     input_label = tf.expand_dims(input_label, 0)  # Add batch dimension
-    
-    # Create a target label that's different from the input
-    target_label = tf.roll(input_label, shift=1, axis=1)  # Shift all characters by one position
-    
-    # Initialize adversarial example
-    adv_image = tf.identity(input_image)
-    
-    # PGD parameters
-    num_steps = 10
-    alpha = 0.01  # Step size
-    
-    for _ in range(num_steps):
-        with tf.GradientTape() as tape:
-            tape.watch(adv_image)
-            prediction = model(adv_image)
-            
-            # Calculate loss for each position in the sequence
-            loss = 0
-            for i in range(prediction.shape[1]):
-                pos_pred = prediction[:, i, :]
-                pos_target = target_label[:, i]
-                
-                if pos_target[0] != 0:
-                    pos_loss = tf.keras.losses.sparse_categorical_crossentropy(
-                        pos_target, pos_pred, from_logits=False
-                    )
-                    loss += pos_loss
-            
-            non_padding_positions = tf.reduce_sum(tf.cast(target_label != 0, tf.float32))
-            loss = loss / (non_padding_positions + 1e-8)
-        
-        # Get gradients
-        gradient = tape.gradient(loss, adv_image)
-        
-        # Update adversarial example
-        adv_image = adv_image + alpha * tf.sign(gradient)
-        
-        # Project back to valid range
-        adv_image = tf.clip_by_value(adv_image, 0, 1)
-    
-    # Calculate final perturbation
+
+    with tf.GradientTape() as tape:
+        tape.watch(input_image)
+        prediction = model(input_image)
+        # Calculate loss for each position in the sequence
+        loss = 0
+        for i in range(prediction.shape[1]):
+            pos_pred = prediction[:, i, :]
+            pos_target = input_label[:, i]
+            if pos_target[0] != 0:
+                pos_loss = tf.keras.losses.sparse_categorical_crossentropy(
+                    pos_target, pos_pred, from_logits=False
+                )
+                loss += pos_loss
+        non_padding_positions = tf.reduce_sum(tf.cast(input_label != 0, tf.float32))
+        loss = loss / (non_padding_positions + 1e-8)
+    # Get gradients
+    gradient = tape.gradient(loss, input_image)
+    # FGSM perturbation: single step
+    signed_grad = tf.sign(gradient)
+    adv_image = input_image + epsilon * signed_grad
+    adv_image = tf.clip_by_value(adv_image, 0, 1)
     perturbation = adv_image - input_image
-    
     # Print statistics
     print(f"\nFinal Loss: {loss}")
     print(f"Perturbation Statistics:")
@@ -109,21 +87,12 @@ def create_adversarial_pattern(input_image, input_label, model):
     print(f"Max: {tf.reduce_max(perturbation).numpy()}")
     print(f"Mean: {tf.reduce_mean(perturbation).numpy()}")
     print(f"Non-zero elements: {tf.math.count_nonzero(perturbation).numpy()}")
-    
-    return perturbation
+    return adv_image[0]  # Remove batch dimension
 
 
 def apply_fgsm_attack(image, epsilon, model, label):
-    """Apply PGD attack to create adversarial example."""
-    # Create adversarial pattern
-    perturbation = create_adversarial_pattern(image, label, model)
-    
-    # Apply perturbation with increased magnitude
-    adv_image = image + epsilon * perturbation[0]
-    
-    # Clip to maintain valid pixel range
-    adv_image = tf.clip_by_value(adv_image, 0, 1)
-    
+    """Apply single-step FGSM attack to create adversarial example."""
+    adv_image = create_adversarial_pattern(image, label, model, epsilon)
     return adv_image
 
 
