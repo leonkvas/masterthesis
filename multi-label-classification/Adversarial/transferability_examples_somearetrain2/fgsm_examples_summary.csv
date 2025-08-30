@@ -1,4 +1,0 @@
-attack_method,attack_parameter,total_examples,successful_attacks,success_rate
-fgsm,epsilon=0.05,38,37,97.37%
-fgsm,epsilon=0.1,44,44,100.00%
-fgsm,epsilon=0.15,39,39,100.00%
