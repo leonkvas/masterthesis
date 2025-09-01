@@ -27,7 +27,7 @@ class Purchase:
         initial_proxy = self.get_next_proxy() if self.ProxyList else proxy
         self.Session = SessionWrapper(proxy=initial_proxy, task_nr=self.TaskNr)
         
-        self.User_Agent = user_agent or "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36"
+        self.User_Agent = user_agent or "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.4896.75 Safari/537.36"
         self.ProductName = ""
         self.Image = ""
         self.Size = ""
@@ -110,17 +110,7 @@ class Purchase:
             # Sleep even when proxy rotation fails
             time.sleep(3)
             return False
-    
-    def extension_checkout(self, link, cookies, _, __):
-        """Simulate extension checkout"""
-        print_queue.put(f"[TASK {self.TaskNr}] [CHECKOUT] Proceeding to checkout at: {link}")
-        print_queue.put(f"[TASK {self.TaskNr}] [CHECKOUT] With cookies: {cookies}")
-        return None
-    
-    def track_checkouts(self):
-        """Simulate tracking checkouts"""
-        print_queue.put(f"[TASK {self.TaskNr}] [SYSTEM] Tracking successful checkout")
-    
+
     def wait_delay_monitor(self):
         """Simulate waiting for next poll"""
         print_queue.put(f"[TASK {self.TaskNr}] [SYSTEM] Waiting for next queue poll...")
@@ -483,7 +473,7 @@ def main():
     print_thread.start()
     
     # Number of concurrent tasks
-    num_tasks = 1000
+    num_tasks = 1
     
     # Create a thread pool
     with ThreadPoolExecutor(max_workers=num_tasks) as executor:

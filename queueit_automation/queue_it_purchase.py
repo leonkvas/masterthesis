@@ -11,7 +11,7 @@ import sys
 import io
 from typing import List, Dict, Union, Any, Optional, Tuple
 
-# Import TensorFlow and Keras for image captcha solving
+# Import TensorFlow and Keras for text captcha solving
 try:
     import tensorflow as tf
     from tensorflow.keras.models import load_model
@@ -32,7 +32,7 @@ class HashedSolution:
 
 class ImgCap:
     """
-    Represents the data for an image captcha
+    Represents the data for an text captcha
     """
     def __init__(self, meta: str, key: str, session_id: str, challenge_details: str, image_base64: str):
         self.Meta = meta
@@ -159,7 +159,7 @@ class QueueItPurchase:
         self.QueueItEnabled = False
         self.QueueItCookie = ""
         
-        # Image captcha related
+        # text captcha related
         self.Meta = ""
         self.key = ""
         self.sessionid = ""
@@ -222,14 +222,6 @@ class QueueItPurchase:
             return text.split(start)[1].split(end)[0]
         except (IndexError, AttributeError):
             return ""
-            
-    def check_if_queue_has_started(self) -> None:
-        """
-        Check if the queue has started and set a global variable
-        """
-        # In the original code, this method sets a shared variable
-        # We'll implement a placeholder for now
-        pass
     
     def buy(self):
         """
@@ -307,7 +299,6 @@ class QueueItPurchase:
         Returns:
             Tuple containing success status (bool) and optional error
         """
-        self.check_if_queue_has_started()
         
         if "decodeURIComponent" in self.resptext:
             self.TargetUrl = self.string_between(self.resptext, "decodeURIComponent('", "')")
@@ -350,7 +341,7 @@ class QueueItPurchase:
         
         if '"name":"BotDetect' in self.resptext:
             self.imgcaptcha = True
-            self.Purchase.info("Image captcha (BotDetect) detected")
+            self.Purchase.info("Text captcha (BotDetect) detected")
         else:
             self.imgcaptcha = False
             
@@ -444,28 +435,28 @@ class QueueItPurchase:
             
             self.imgcaptcha = True
             if self.imgcaptcha:
-                self.Purchase.info("Image captcha detected, starting solving process")
+                self.Purchase.info("text captcha detected, starting solving process")
                 
-                # Try up to 3 times to solve the image captcha
+                # Try up to 3 times to solve the text captcha
                 max_attempts = 3
                 for attempt in range(1, max_attempts + 1):
-                    self.Purchase.info(f"Image captcha solution attempt {attempt}/{max_attempts}")
+                    self.Purchase.info(f"text captcha solution attempt {attempt}/{max_attempts}")
                     
-                    # First fetch the image captcha details
+                    # First fetch the text captcha details
                     success, error = self.solve_queue_it_img()
                     if not success:
-                        self.Purchase.error(f"Failed to fetch image captcha challenge: {error}")
+                        self.Purchase.error(f"Failed to fetch text captcha challenge: {error}")
                         if attempt == max_attempts:
                             return False, error
                         self.Purchase.info(f"Retrying in 2 seconds...")
                         time.sleep(2)
                         continue
                     
-                    # Then solve the image captcha
-                    self.Purchase.info("Solving image captcha...")
+                    # Then solve the text captcha
+                    self.Purchase.info("Solving text captcha...")
                     success, error = self.solve_img_cap()
                     if not success:
-                        self.Purchase.error(f"Failed to solve image captcha: {error}")
+                        self.Purchase.error(f"Failed to solve text captcha: {error}")
                         if attempt == max_attempts:
                             return False, error
                         self.Purchase.info(f"Retrying in 2 seconds...")
@@ -473,10 +464,10 @@ class QueueItPurchase:
                         continue
                     
                     # Finally, submit the solution
-                    self.Purchase.info("Submitting image captcha solution...")
+                    self.Purchase.info("Submitting text captcha solution...")
                     success, error = self.submit_img_cap()
                     if not success:
-                        self.Purchase.error(f"Failed to submit image captcha solution: {error}")
+                        self.Purchase.error(f"Failed to submit text captcha solution: {error}")
                         if attempt == max_attempts:
                             return False, error
                         self.Purchase.info(f"Retrying in 2 seconds...")
@@ -484,11 +475,11 @@ class QueueItPurchase:
                         continue
                     
                     # If we got here, we succeeded
-                    self.Purchase.success(f"Successfully solved image captcha on attempt {attempt}")
+                    self.Purchase.success(f"Successfully solved text captcha on attempt {attempt}")
                     break
                 else:
                     # This only executes if the for loop completes without a break
-                    self.Purchase.error("Failed to solve image captcha after maximum attempts")
+                    self.Purchase.error("Failed to solve text captcha after maximum attempts")
                     return False, Exception("Failed after maximum retry attempts")
 
             sys.exit(0)  
@@ -524,15 +515,14 @@ class QueueItPurchase:
 
     def solve_queue_it_img(self):
         """
-        Handle image captcha challenge in Queue-it
+        Handle text captcha challenge in Queue-it
         
         Returns:
             Tuple containing success status (bool) and optional error
         """
-        self.check_if_queue_has_started()
         
         # Debug info
-        self.Purchase.info(f"Fetching image captcha from: {self.Host}")
+        self.Purchase.info(f"Fetching text captcha from: {self.Host}")
         self.Purchase.info(f"EventId: {self.EventId}")
         self.Purchase.info(f"Customer_ID: {self.Customer_ID}")
         self.Purchase.info(f"Alternative Path: {self.AlternativePath}")
@@ -557,15 +547,15 @@ class QueueItPurchase:
         }
         
         url = f"https://{self.Host}{self.AlternativePath}/challengeapi/queueitcaptcha/challenge/{self.culture}"
-        self.Purchase.info(f"Image captcha request URL: {url}")
+        self.Purchase.info(f"text captcha request URL: {url}")
         
         try:
             response = self.Purchase.Session.post(url, headers=headers)
             
-            self.Purchase.info(f"Image captcha response status: {response.status_code}")
+            self.Purchase.info(f"text captcha response status: {response.status_code}")
             if response.status_code == 200:
                 try:
-                    self.Purchase.info(f"Image captcha response length: {len(response.text)}")
+                    self.Purchase.info(f"text captcha response length: {len(response.text)}")
                     imgdata = json.loads(response.text)
                     
                     # Try to extract standard fields
@@ -575,10 +565,10 @@ class QueueItPurchase:
                     self.ChallengeDetails = imgdata.get('challengeDetails')
                     self.imgbase64 = imgdata.get('imageBase64')
                     
-                    self.Purchase.info(f"Successfully fetched image captcha")
+                    self.Purchase.info(f"Successfully fetched text captcha")
                     return True, None
                 except json.JSONDecodeError as je:
-                    self.Purchase.error(f"Failed to parse image captcha JSON response: {str(je)}")
+                    self.Purchase.error(f"Failed to parse text captcha JSON response: {str(je)}")
                     self.Purchase.info(f"Response text: {response.text[:100]}...")
                     return False, Exception(f"JSON parse error: {str(je)}")
             elif response.status_code == 429:
@@ -617,42 +607,41 @@ class QueueItPurchase:
 
     def solve_img_cap(self):
         """
-        Solve the image captcha using a local Keras model
+        Solve the text captcha using a local Keras model
         
         Returns:
             Tuple containing success status (bool) and optional error
         """
-        self.check_if_queue_has_started()
         
-        self.Purchase.interaction("Solving Image Captcha using local Keras model")
+        self.Purchase.interaction("Solving text captcha using local Keras model")
         
         try:
             # Check if required fields for image request are set
             if not self.Host:
-                self.Purchase.error("Host is not set, cannot fetch image captcha")
+                self.Purchase.error("Host is not set, cannot fetch text captcha")
                 return False, Exception("Host is not set")
                 
             if not self.EventId:
-                self.Purchase.error("EventId is not set, cannot fetch image captcha")
+                self.Purchase.error("EventId is not set, cannot fetch text captcha")
                 return False, Exception("EventId is not set")
                 
             if not self.Customer_ID:
-                self.Purchase.error("Customer_ID is not set, cannot fetch image captcha")
+                self.Purchase.error("Customer_ID is not set, cannot fetch text captcha")
                 return False, Exception("Customer_ID is not set")
         
             # Check if we need to fetch the image data first
             if not self.imgbase64:
-                self.Purchase.info("No image data found, fetching image captcha first")
+                self.Purchase.info("No image data found, fetching text captcha first")
                 success, error = self.solve_queue_it_img()
                 if not success:
-                    self.Purchase.error(f"Failed to fetch image captcha: {error}")
+                    self.Purchase.error(f"Failed to fetch text captcha: {error}")
                     return False, error
                 
                 # Double-check that the image data was retrieved
                 if not self.imgbase64:
                     self.Purchase.error("Failed to get image data after fetch attempt")
-                    # Try to access the image captcha challenge directly as a fallback
-                    self.Purchase.info("Attempting direct access to image captcha challenge")
+                    # Try to access the text captcha challenge directly as a fallback
+                    self.Purchase.info("Attempting direct access to text captcha challenge")
                     direct_url = f"https://{self.Host}{self.AlternativePath}/challengeapi/queueitcaptcha/challenge/{self.culture}"
                     self.Purchase.interaction(f"Open this URL in browser to check what's happening: {direct_url}")
                     return False, Exception("Failed to get image data after fetch attempt")
@@ -746,14 +735,13 @@ class QueueItPurchase:
     
     def submit_img_cap(self):
         """
-        Submit the solution for the image captcha
+        Submit the solution for the text captcha
         
         Returns:
             Tuple containing success status (bool) and optional error
         """
-        self.check_if_queue_has_started()
         
-        self.Purchase.interaction("Submit Image Captcha")
+        self.Purchase.interaction("Submit text captcha")
         
         response_text = self.response
         self.Purchase.info(f"Submitting solution: '{response_text}'")
@@ -830,7 +818,7 @@ class QueueItPurchase:
                     response_data = json.loads(response.text)
                     
                     if response_data.get("IsVerified", False) or response_data.get("isVerified", False):
-                        self.Purchase.success(f"Solved Image Captcha with solution: '{response_text}'")
+                        self.Purchase.success(f"Solved text captcha with solution: '{response_text}'")
                         
                         # Store the session info for later use in get_queue_id
                         session_info = response_data.get("sessionInfo", {})
@@ -848,7 +836,7 @@ class QueueItPurchase:
                         return True, None
                     else:
                         error_message = response_data.get("ErrorMessage", response_data.get("errorMessage", "Unknown error"))
-                        self.Purchase.error(f"Image Captcha solution not accepted: {error_message}")
+                        self.Purchase.error(f"text captcha solution not accepted: {error_message}")
                         self.Purchase.rotate_proxy()
                         return False, Exception(f"Solution not accepted: {error_message}")
                 except json.JSONDecodeError as e:
@@ -857,12 +845,12 @@ class QueueItPurchase:
                     return False, e
                 
             elif response.status_code in [429, 403]:
-                self.Purchase.error(f"Error submitting Image Captcha Solution -- Status: {response.status_code}")
+                self.Purchase.error(f"Error submitting text captcha Solution -- Status: {response.status_code}")
                 if hasattr(response, 'text'):
                     self.Purchase.error(f"Response: {response.text[:200]}")
                 return False, Exception(f"HTTP error {response.status_code}")
             else:
-                self.Purchase.error(f"Error submitting Image Captcha Solution -- Unknown Error [{response.status_code}]")
+                self.Purchase.error(f"Error submitting text captcha Solution -- Unknown Error [{response.status_code}]")
                 if hasattr(response, 'text'):
                     self.Purchase.error(f"Response: {response.text[:200]}")
                 return False, Exception(f"HTTP error {response.status_code}")
@@ -878,7 +866,6 @@ class QueueItPurchase:
         Returns:
             Tuple containing success status (bool) and optional error
         """
-        self.check_if_queue_has_started()
         
         # Check if we have the required parameters
         if not self.Host:
@@ -990,7 +977,6 @@ class QueueItPurchase:
         Returns:
             A list of HashedSolution objects or an error
         """
-        self.check_if_queue_has_started()
         
         self.Purchase.info(f"Solving PoW challenge - input: {input_str}, complexity: {complexity}, runs: {runs}")
         
@@ -1043,7 +1029,6 @@ class QueueItPurchase:
         Returns:
             Tuple containing success status (bool) and optional error
         """
-        self.check_if_queue_has_started()
         
         # Debug information about solution
         if not self.Solution:
@@ -1216,7 +1201,7 @@ class QueueItPurchase:
             # Prepare challenge sessions array
             challenge_sessions = []
             
-            # Add Image Captcha session if available
+            # Add text captcha session if available
             if hasattr(self, 'SessionInfoIMG') and self.SessionInfoIMG:
                 challenge_sessions.append(self.SessionInfoIMG)
             
@@ -1364,7 +1349,6 @@ class QueueItPurchase:
                 
                 # Track successful checkouts
                 self.Purchase.success("Successfully passed Queue!.")
-                self.Purchase.track_checkouts()
                
                 return True, None
             
@@ -1470,7 +1454,6 @@ class QueueItPurchase:
         Returns:
             Tuple containing success status (bool) and optional error
         """
-        self.check_if_queue_has_started()
         
         headers = {
             "accept": "*/*",
