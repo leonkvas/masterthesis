@@ -40,8 +40,8 @@ idx_to_char = {i + 1: char for i, char in enumerate(vocab)}
 MAX_CAPTCHA_LEN = 7
 
 # Directory for saving examples
-ADV_EXAMPLES_DIR = "data/train_2_adversarial_examples" # change to test if you want to test on test set
-ADV_EXAMPLES_DIR = "multi-label-classification/Adversarial/transferability_examples" # change to train if you want to test on train set
+ADV_EXAMPLES_DIR = "data/train_2_adversarial_examples"
+ADV_EXAMPLES_DIR = "multi-label-classification/Adversarial/transferability_examples" 
 
 # --- Helper functions ---
 def load_and_preprocess_image(image_path):

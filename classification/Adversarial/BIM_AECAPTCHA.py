@@ -22,8 +22,7 @@ vocab = list("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 vocab_size = len(vocab) + 1  # +1 for padding (index 0)
 char_to_idx = {char: i + 1 for i, char in enumerate(vocab)}
 idx_to_char = {i + 1: char for i, char in enumerate(vocab)}
-# If your model was trained with a specific fixed max captcha length:
-MAX_CAPTCHA_LEN = 7  # adjust as per your training configuration
+MAX_CAPTCHA_LEN = 7 
 
 
 # --- Helper functions ---

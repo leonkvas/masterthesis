@@ -27,7 +27,7 @@ class Purchase:
         initial_proxy = self.get_next_proxy() if self.ProxyList else proxy
         self.Session = SessionWrapper(proxy=initial_proxy, task_nr=self.TaskNr)
         
-        self.User_Agent = user_agent or "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.4896.75 Safari/537.36"
+        self.User_Agent = user_agent or "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.4896.75 Safari/537.36"
         self.ProductName = ""
         self.Image = ""
         self.Size = ""
@@ -192,7 +192,6 @@ class SessionWrapper:
                 print_queue.put(f"[TASK {self.task_nr}] [ERROR] Request failed with status code: {response.status_code}")
                 time.sleep(3)
             
-            # Create a custom response object with the properties we need
             class CustomResponse:
                 def __init__(self, resp):
                     self.original = resp
@@ -277,7 +276,6 @@ class SessionWrapper:
                 print_queue.put(f"[TASK {self.task_nr}] [ERROR] Request failed with status code: {response.status_code}")
                 time.sleep(3)
             
-            # Create a custom response object with the properties we need
             class CustomResponse:
                 def __init__(self, resp):
                     self.original = resp

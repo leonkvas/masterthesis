@@ -18,7 +18,7 @@ idx_to_char = {i + 1: char for i, char in enumerate(vocab)}
 max_captcha_len = 7
 
 # API configuration
-ROBOFLOW_API_KEY = "TglwaRju23eGCaereXhC"
+ROBOFLOW_API_KEY = "" # needs to be filled
 MODEL_ID = "text-captchas/2"
 
 # Initialize the Roboflow client

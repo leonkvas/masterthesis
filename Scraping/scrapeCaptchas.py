@@ -2,7 +2,7 @@ import requests
 from requests import post
 from base64 import b64decode
 
-proxy = "gw-eu.lemonclub.io:5555:pkg-lemonprime-country-US:old6zc33df86s1z8"
+proxy = "gw-eu.lemonclub.io:5555:pkg-lemonprime-country-US:old6zc33df86s1u8" # rotating Proxy to not get banned while scraping
 proxy_ip, proxy_port, proxy_user, proxy_pw = proxy.split(":")
 proxy_url = f"http://{proxy_user}:{proxy_pw}@{proxy_ip}:{proxy_port}"
 s = requests.Session()
@@ -34,7 +34,7 @@ def load_captcha():
     return None
 
 if __name__ == "__main__":
-    for i in range(500):  # Iterate to download x images
+    for i in range(500):  # Iterate to download n images
         b64image = load_captcha()
         if b64image:
             filename = f"queueit_3_{i+1}.png"

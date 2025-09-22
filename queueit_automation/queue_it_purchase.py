@@ -323,7 +323,7 @@ class QueueItPurchase:
                 self.Purchase.error_with_ip_change("Error 403 -> Restarting task and changing IP..")
                 self.Purchase.Session.delete_all_cookies()
                 self.buy()
-                time.sleep(9 * 60 * 60)  # Sleep for 9 hours (like in original code)
+                time.sleep(9 * 60 * 60)
                 return False, None
             else:
                 self.Purchase.error_with_ip_change("QueueIt is not active on this Site. Retrying..")
@@ -1048,7 +1048,7 @@ class QueueItPurchase:
         
         # Create the solution data structure exactly matching the example
         solution_data = {
-            "hash": self.Solution,  # Keep the original solution format
+            "hash": self.Solution,  # Keep the solution format
             "type": "HashChallenge"  # Use the exact type from example
         }
         
@@ -1403,12 +1403,6 @@ class QueueItPurchase:
                         self.Purchase.info(f"[QUEUE PAUSED] Waiting in Queue, Number: {formatted_queue_number}, Users ahead: {users_ahead}, Progress: {progress}")
                     else:
                         self.QueueLiveTries += 1
-                        
-                        # Mark queue as started after some successful tries
-                        if self.QueueLiveTries > 3:
-                            # Set global variable indicating queue has started
-                            # In original code this sets sharedvariables.HasQueueStarted = true
-                            pass
                         
                         self.Purchase.info(f"Waiting in Queue, Number: {formatted_queue_number}, Users ahead: {users_ahead}, Progress: {progress}")
                     
