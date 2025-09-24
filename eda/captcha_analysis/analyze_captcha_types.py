@@ -308,6 +308,13 @@ def plot_type_characteristics(characteristics, output_path):
         characteristics (dict): Dictionary of characteristics for each type
         output_path (str): Path to save the plots
     """
+    # Define colors for each captcha type
+    type_colors = {
+        'dark_blue': '#1f4e79',      # Dark blue
+        'light_blue': '#87ceeb',     # Light blue (sky blue)
+        'checkered': '#2f2f2f'       # Dark gray/black
+    }
+    
     # Create a figure with subplots
     fig, axes = plt.subplots(2, 2, figsize=(15, 10))
     fig.suptitle('Captcha Type Characteristics')
@@ -315,21 +322,24 @@ def plot_type_characteristics(characteristics, output_path):
     # Plot edge density distribution
     for captcha_type, data in characteristics.items():
         edge_densities = [d['edge_density'] for d in data]
-        axes[0, 0].hist(edge_densities, alpha=0.5, label=captcha_type)
+        color = type_colors.get(captcha_type, 'gray')
+        axes[0, 0].hist(edge_densities, alpha=0.7, label=captcha_type, color=color)
     axes[0, 0].set_title('Edge Density Distribution')
     axes[0, 0].legend()
     
     # Plot average saturation
     for captcha_type, data in characteristics.items():
         saturations = [d['avg_saturation'] for d in data]
-        axes[0, 1].hist(saturations, alpha=0.5, label=captcha_type)
+        color = type_colors.get(captcha_type, 'gray')
+        axes[0, 1].hist(saturations, alpha=0.7, label=captcha_type, color=color)
     axes[0, 1].set_title('Saturation Distribution')
     axes[0, 1].legend()
     
     # Plot average value
     for captcha_type, data in characteristics.items():
         values = [d['avg_value'] for d in data]
-        axes[1, 0].hist(values, alpha=0.5, label=captcha_type)
+        color = type_colors.get(captcha_type, 'gray')
+        axes[1, 0].hist(values, alpha=0.7, label=captcha_type, color=color)
     axes[1, 0].set_title('Value (Brightness) Distribution')
     axes[1, 0].legend()
     
